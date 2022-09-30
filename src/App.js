@@ -9,6 +9,8 @@ import { auth } from "./initFirebase";
 import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 
+//test
+
 export default function App() {
   /* Current user state */
   const [currentUser, setCurrentUser] = useState(undefined);

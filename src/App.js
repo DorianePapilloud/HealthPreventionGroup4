@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./initFirebase";
 import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
+import { userUIDInfo } from "./services/getCurrentUserUid"
 
 //test
 
@@ -18,8 +19,13 @@ export default function App() {
   /* Watch for authentication state changes */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("User is", user);
       setCurrentUser(user);
+      if(!currentUser === undefined){
+        userUIDInfo.setUID = user.uid ;
+      }
+      else{
+        userUIDInfo.setUID = "Guest";
+      }
     });
 
     // Unsubscribe from changes when App is unmounted

@@ -2,6 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../initFirebase";
 import UserForm from "../components/UserForm";
 import { useNavigate } from "react-router-dom";
+import {userUIDInfo} from "../services/getCurrentUserUid";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -10,7 +11,9 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      let data = await signInWithEmailAndPassword(auth, email, password);
+      let userUID = data.user.uid;
+      userUIDInfo.setUID = userUID;
       navigate("/");
     } catch (e) {
       console.error(e);

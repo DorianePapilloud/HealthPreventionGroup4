@@ -2,20 +2,27 @@ import UserForm from "../components/UserForm";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../initFirebase";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { getDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../initFirebase";
+import { userUIDInfo } from "../services/getCurrentUserUid"
+
 export default function Register() {
   const navigate = useNavigate();
-  let userUID;
+
   const handleRegister = async (e, email, password) => {
     e.preventDefault();
+
     try {
-      await createUserWithEmailAndPassword(auth, email, password).then(data => {
-        console.log("Je suis laaaa");
-        userUID = data.user.uid;
-        db.collection("user").doc(userUID).set({
-          Role: "PNJ"
-        });
+      let data = await createUserWithEmailAndPassword(auth, email, password);
+      let userUID = data.user.uid;
+      userUIDInfo.setUID = userUID;
+
+      // TODO : pass the name, surname, role and answers as handleregister inputs
+      await setDoc(doc(db, "users", userUID), {
+        name: "Marie",
+        surname: "Curie",
+        role: "PNJ",
+        answers: [5, true, "hello"],
       });
       navigate("/");
     } catch (e) {

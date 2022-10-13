@@ -5,6 +5,7 @@ import { getFirestore } from "firebase/firestore";
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
   // Other configuration options, such as the Realtime Database / Firestore details...
 };
 const app = initializeApp(config);

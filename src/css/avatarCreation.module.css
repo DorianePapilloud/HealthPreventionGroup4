@@ -1,0 +1,22 @@
+.face {
+    position: absolute;
+    left: 50.4%;
+    top: 41.8%;
+    z-index: 2;
+}
+.body {
+    position: absolute;
+    left: 46%;
+    top: 45.8%;
+    z-index: 0;
+}
+.head {
+    position: absolute;
+    left: 47.7%;
+    top: 39%;
+    z-index: 1;
+}
+.info {
+    font-size: 16px;
+    margin: 20px;
+}

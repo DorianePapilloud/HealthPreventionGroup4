@@ -8,6 +8,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./initFirebase";
 import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
+import { userUIDInfo } from "./services/getCurrentUserUid"
+import AvatarCreation from "./pages/AvatarCreation";
+import {DiabetesAlgorithm} from "./DiabetesAlgorithm";
+import {InfarctAlgorithm} from "./InfarctAlgorithm";
+import {NoInfarctAlgorithm} from "./NoInfarctAlgorithm";
+import {CancerAlgorithm} from "./CancerAlgorithm";
 
 //test
 
@@ -18,8 +24,13 @@ export default function App() {
   /* Watch for authentication state changes */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("User is", user);
       setCurrentUser(user);
+      if(!currentUser === undefined){
+        userUIDInfo.setUID = user.uid ;
+      }
+      else{
+        userUIDInfo.setUID = "Guest";
+      }
     });
 
     // Unsubscribe from changes when App is unmounted
@@ -46,6 +57,11 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/avatar" element={<AvatarCreation />} />
+          <Route path="/cancer" element={<CancerAlgorithm />} />
+          <Route path="/infarct" element={<InfarctAlgorithm />} />
+          <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />
+          <Route path="/diabete" element={<DiabetesAlgorithm />} />
         </Routes>
       </header>
     </div>

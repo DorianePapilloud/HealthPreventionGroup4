@@ -1,9 +1,62 @@
 import { Link } from "react-router-dom";
+import {useState, useEffect, Component} from "react";
+import { db } from "../initFirebase";
+import { collection, getDoc, getDocs, doc } from 'firebase/firestore'
+import { userUIDInfo } from "../services/getCurrentUserUid"
+import { userConverter } from "../objects/user";
+
 
 export default function Home({ currentUser }) {
+
+  const [users, setUsers] = useState([]) ;
+  const [speech, setSpeech] = useState("");
+  let uName = "";
+  let uSurname = "";
+  let base = "";
+
+  useEffect(() => {
+      let userUID = userUIDInfo.getUID;
+
+      const getObject = async () => {
+          const ref = doc(db, "users", userUID).withConverter(userConverter);
+          const docSnap = await getDoc(ref);
+
+          if (docSnap.exists()) {
+              // Convert to User object
+              const user = docSnap.data();
+              // set the text to display
+              uName = await user.getName();
+              uSurname = await user.getSurname();
+              base = "You're connected as ";
+          } else {
+              console.log("No user found!");
+          }
+      }
+      getObject().then(() => {
+          setSpeech(base + uName + " " + uSurname);
+      });
+      // get all docs
+      // const userCollectionRef = collection(db, "users")
+      // const getUsers = async () => {
+      //
+      //     const data = await getDocs(userCollectionRef);
+      //     setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      // };
+      //getUsers();
+  }, []);
+
   return (
     <div>
+        <p>{speech}</p>
       <h1>Welcome to the Health Prevention Questionnaire</h1>
+        {users.map((user) => {
+            return (
+                <div>
+                    <h1>Name: {user.name}</h1>
+                    <p>Surname: {user.surname}</p>
+                </div>
+            );
+        })}
       {!currentUser ? (
         <>
           <Link to="/register" className="App-link">

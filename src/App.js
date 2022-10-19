@@ -1,4 +1,6 @@
 import "./App.css";
+import "./AlgoCancer.js"
+import "./Questionnaire"
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -8,6 +10,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./initFirebase";
 import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
+import Questionnaire from "./Questionnaire";
 
 //test
 
@@ -46,6 +49,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/questionnaire" element={<Questionnaire/>} />
         </Routes>
       </header>
     </div>

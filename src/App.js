@@ -10,6 +10,10 @@ import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import { userUIDInfo } from "./services/getCurrentUserUid"
 import AvatarCreation from "./pages/AvatarCreation";
+import {DiabetesAlgorithm} from "./DiabetesAlgorithm";
+import {InfarctAlgorithm} from "./InfarctAlgorithm";
+import {NoInfarctAlgorithm} from "./NoInfarctAlgorithm";
+import {CancerAlgorithm} from "./CancerAlgorithm";
 
 //test
 
@@ -54,6 +58,10 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/avatar" element={<AvatarCreation />} />
+          <Route path="/cancer" element={<CancerAlgorithm />} />
+          <Route path="/infarct" element={<InfarctAlgorithm />} />
+          <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />
+          <Route path="/diabete" element={<DiabetesAlgorithm />} />
         </Routes>
       </header>
     </div>

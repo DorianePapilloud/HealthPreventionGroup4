@@ -1,8 +1,9 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+// import Questionnaire from "./pages/Questionnaire";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./initFirebase";

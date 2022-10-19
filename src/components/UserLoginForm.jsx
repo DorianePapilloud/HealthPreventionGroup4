@@ -1,22 +1,14 @@
-import { useState } from "react";
+import { useState , useMemo } from "react";
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
+import Switch from "react-switch"
 
-export default function UserForm({ handleSubmit, submitButtonLabel }) {
+export default function UserLoginForm({ handleSubmit, submitButtonLabel }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [country, setCountry] = useState("");
-  const [gender, setGender] = useState("");
-  const [role, setRole] = useState("");
-
-
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleSurnameChange = (e) => setSurname(e.target.value);
-  const handleCountryChange = (e) => setCountry(e.target.value);
-
 
   return (
     <form
@@ -40,7 +32,7 @@ export default function UserForm({ handleSubmit, submitButtonLabel }) {
         required
       />
       <br />
-      <button type="submit">{submitButtonLabel}</button>
+      <button type="submit" id="sub_button">{submitButtonLabel}</button>
     </form>
   );
 }

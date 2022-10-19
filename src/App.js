@@ -9,6 +9,7 @@ import { auth } from "./initFirebase";
 import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import { userUIDInfo } from "./services/getCurrentUserUid"
+import AvatarCreation from "./pages/AvatarCreation";
 
 //test
 
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/avatar" element={<AvatarCreation />} />
         </Routes>
       </header>
     </div>

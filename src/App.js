@@ -10,10 +10,11 @@ import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import { userUIDInfo } from "./services/getCurrentUserUid"
 import AvatarCreation from "./pages/AvatarCreation";
-import {DiabetesAlgorithm} from "./DiabetesAlgorithm";
-import {InfarctAlgorithm} from "./InfarctAlgorithm";
-import {NoInfarctAlgorithm} from "./NoInfarctAlgorithm";
-import {CancerAlgorithm} from "./CancerAlgorithm";
+import {DiabetesAlgorithm} from "./algorithms/DiabetesAlgorithm";
+import {InfarctAlgorithm} from "./algorithms/InfarctAlgorithm";
+import {NoInfarctAlgorithm} from "./algorithms/NoInfarctAlgorithm";
+import {CancerAlgorithm} from "./algorithms/CancerAlgorithm";
+import AdminPage from "./pages/AdminPage";
 
 //test
 
@@ -62,6 +63,7 @@ export default function App() {
           <Route path="/infarct" element={<InfarctAlgorithm />} />
           <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />
           <Route path="/diabete" element={<DiabetesAlgorithm />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </header>
     </div>

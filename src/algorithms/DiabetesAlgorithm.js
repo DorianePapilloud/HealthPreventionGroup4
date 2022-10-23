@@ -12,8 +12,8 @@ export class DiabetesAlgorithm extends React.Component {
             weight: 75,
             hypertension: 0,
             highBloodGlucose: 1,
-            sport: 0,
-            alim: 3,
+            sport: 3,
+            alim: 1,
         }
     }
 
@@ -98,6 +98,7 @@ export class DiabetesAlgorithm extends React.Component {
 
     render() {
 
+        //test
         return (
             <div>
                 <p>Age: {this.getPointsForAge()}</p>

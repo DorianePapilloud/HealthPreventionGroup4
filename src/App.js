@@ -1,5 +1,4 @@
 import "./App.css";
-import "./AlgoCancer.js"
 import "./Questionnaire"
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
@@ -11,6 +10,14 @@ import { auth } from "./initFirebase";
 import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import Questionnaire from "./Questionnaire";
+import { userUIDInfo } from "./services/getCurrentUserUid"
+import AvatarCreation from "./pages/AvatarCreation";
+import NavBar from "./pages/NavBar/indexNB";
+import {DiabetesAlgorithm} from "./algorithms/DiabetesAlgorithm";
+import {InfarctAlgorithm} from "./algorithms/InfarctAlgorithm";
+import {NoInfarctAlgorithm} from "./algorithms/NoInfarctAlgorithm";
+import {CancerAlgorithm} from "./algorithms/CancerAlgorithm";
+import AdminPage from "./pages/AdminPage";
 
 //test
 
@@ -21,8 +28,13 @@ export default function App() {
   /* Watch for authentication state changes */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("User is", user);
       setCurrentUser(user);
+      if(!currentUser === undefined){
+        userUIDInfo.setUID = user.uid ;
+      }
+      else{
+        userUIDInfo.setUID = "Guest";
+      }
     });
 
     // Unsubscribe from changes when App is unmounted
@@ -43,6 +55,9 @@ export default function App() {
 
   return (
     <div className="App">
+      <div>
+        <NavBar currentUser={currentUser}></NavBar>
+      </div>
       <header className="App-header">
         <Routes>
           <Route path="/" element={<Home currentUser={currentUser} />} />
@@ -50,6 +65,12 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/questionnaire" element={<Questionnaire/>} />
+          <Route path="/avatar" element={<AvatarCreation />} />
+          <Route path="/cancer" element={<CancerAlgorithm />} />
+          <Route path="/infarct" element={<InfarctAlgorithm />} />
+          <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />
+          <Route path="/diabete" element={<DiabetesAlgorithm />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </header>
     </div>

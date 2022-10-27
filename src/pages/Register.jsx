@@ -36,7 +36,6 @@ export default function Register() {
   };
   return (
       <div>
-        <h1>Register</h1>
         <UserRegisterForm handleSubmit={handleRegister} submitButtonLabel="Register" />
       </div>
   );

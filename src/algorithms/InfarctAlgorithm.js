@@ -8,7 +8,7 @@ export class InfarctAlgorithm extends React.Component {
             age: 45,
             gender: 0,
             smoke: 1,
-            hypertension: 100,
+            bloodPressure: 100,
             diabetes: 1,
             infarct: 1,
             chol1: 3.2,
@@ -47,9 +47,9 @@ export class InfarctAlgorithm extends React.Component {
         return valueSmoke;
     }
 
-    getValueForHypertension() {
-        let valueHypertension = this.state.hypertension * this.coeff[3];
-        return valueHypertension;
+    getValueForBloodPressure() {
+        let valueBloodPressure = this.state.bloodPressure * this.coeff[3];
+        return valueBloodPressure;
     }
 
     getValueForDiabetes() {
@@ -101,7 +101,7 @@ export class InfarctAlgorithm extends React.Component {
     calculateTotal() {
         let total;
         total = this.getValueForAge() + this.getValueForGender() + this.getValueForSmoke()
-            + this.getValueForHypertension() + this.getValueForDiabetes() + this.getValueForInfarct()
+            + this.getValueForBloodPressure() + this.getValueForDiabetes() + this.getValueForInfarct()
             + this.getValueForCHOL1() + this.getValueForHDL() + this.getValueForCHOL2()
             + this.getValueForEGRF() + this.getValueForHsCRP();
 
@@ -118,12 +118,13 @@ export class InfarctAlgorithm extends React.Component {
 
     render() {
 
+        //test
         return (
             <div>
                 <p>Age: {this.getValueForAge()}</p>
                 <p>Gender: {this.getValueForGender()}</p>
                 <p>Smoke: {this.getValueForSmoke()}</p>
-                <p>Hypertension: {this.getValueForHypertension()}</p>
+                <p>Hypertension: {this.getValueForBloodPressure()}</p>
                 <p>Diabetes: {this.getValueForDiabetes()}</p>
                 <p>Infarct: {this.getValueForInfarct()}</p>
                 <p>total CHOL mmol/1: {this.getValueForCHOL1()} </p>

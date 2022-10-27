@@ -123,6 +123,7 @@ export class CancerAlgorithm extends React.Component {
         return risk;
     }
 
+    //test
     render() {
         return (
             <div>

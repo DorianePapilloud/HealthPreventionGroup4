@@ -1,4 +1,5 @@
 $main-color: #4dd6b6;
+$font : 'Calibri Light', sans-serif;
 h6{
   color: #2c2d33;
 }
@@ -84,15 +85,16 @@ h6{
   }
   .right-side{
     .welcome_note{
+      font-family: sans-serif;
     }
     .welcomeImg{
       height: 50%;
-      width: 70%;
+      width: 100%;
       margin: 5rem auto;
       #welcome_doctors{
         width: 100%;
         object-fit: cover;
-      }
+     }
     }
   }
 }

@@ -1,11 +1,20 @@
 $main-color: #4dd6b6;
 $font : 'Calibri Light', sans-serif;
 h6{
-  color: #2c2d33;
+  font-family: $font;
+  font-size: small;
+  color: #555555;
 }
 .link{
-  color: $main-color;
   text-decoration: none;
+  font-style: 600;
+  margin-left: 0.3rem;
+  cursor: pointer;
+  color: gray;
+
+  &:hover {
+    color: cadetblue;
+  }
 }
 .main-login{
   min-height: 100vh;

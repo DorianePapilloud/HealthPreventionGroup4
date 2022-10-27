@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import { userUIDInfo } from "./services/getCurrentUserUid"
 import AvatarCreation from "./pages/AvatarCreation";
+import NavBar from "./pages/NavBar/indexNB";
 import {DiabetesAlgorithm} from "./algorithms/DiabetesAlgorithm";
 import {InfarctAlgorithm} from "./algorithms/InfarctAlgorithm";
 import {NoInfarctAlgorithm} from "./algorithms/NoInfarctAlgorithm";
@@ -52,6 +53,9 @@ export default function App() {
 
   return (
     <div className="App">
+      <div>
+        <NavBar currentUser={currentUser}></NavBar>
+      </div>
       <header className="App-header">
         <Routes>
           <Route path="/" element={<Home currentUser={currentUser} />} />

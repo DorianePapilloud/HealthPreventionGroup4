@@ -9,9 +9,12 @@ import {userConverter} from "../../objects/user";
 export default function NavBar({ currentUser }) {
 
     const [users, setUsers] = useState([]) ;
+    let userUID = "Guest";
 
     useEffect(() => {
-        let userUID = currentUser.uid;
+        if(currentUser){
+            userUID = currentUser.uid;
+        }
 
         const getObject = async () => {
             const ref = doc(db, "users", userUID).withConverter(userConverter);

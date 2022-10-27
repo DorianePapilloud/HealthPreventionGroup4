@@ -64,7 +64,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/questionnaire" element={<Questionnaire/>} />
+          <Route path="/questionnaire" element={<Questionnaire currentUser={currentUser} />} />
           <Route path="/avatar" element={<AvatarCreation />} />
           <Route path="/cancer" element={<CancerAlgorithm />} />
           <Route path="/infarct" element={<InfarctAlgorithm />} />

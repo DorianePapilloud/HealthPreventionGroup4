@@ -14,6 +14,7 @@ import {DiabetesAlgorithm} from "./DiabetesAlgorithm";
 import {InfarctAlgorithm} from "./InfarctAlgorithm";
 import {NoInfarctAlgorithm} from "./NoInfarctAlgorithm";
 import {CancerAlgorithm} from "./CancerAlgorithm";
+import NavBar from "./pages/NavBar/indexNB";
 
 //test
 
@@ -51,6 +52,9 @@ export default function App() {
 
   return (
     <div className="App">
+      <div>
+        <NavBar currentUser={currentUser}></NavBar>
+      </div>
       <header className="App-header">
         <Routes>
           <Route path="/" element={<Home currentUser={currentUser} />} />

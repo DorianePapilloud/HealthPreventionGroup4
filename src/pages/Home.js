@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import {useState, useEffect, Component} from "react";
 import { db } from "../initFirebase";
 import { collection, getDoc, getDocs, doc } from 'firebase/firestore'
-import { userUIDInfo } from "../services/getCurrentUserUid"
 import { userConverter } from "../objects/user";
 import Header from "./Header";
 
@@ -14,9 +13,13 @@ export default function Home({ currentUser }) {
   let uName = "";
   let uSurname = "";
   let base = "";
+  let userUID = "Guest";
 
   useEffect(() => {
-      let userUID = userUIDInfo.getUID;
+      if (currentUser){
+          console.log("Home UID test " + currentUser.uid);
+          userUID = currentUser.uid;
+      }
 
       const getObject = async () => {
           const ref = doc(db, "users", userUID).withConverter(userConverter);
@@ -33,9 +36,11 @@ export default function Home({ currentUser }) {
               console.log("No user found!");
           }
       }
-      getObject().then(() => {
-          setSpeech(base + uName + " " + uSurname);
-      });
+
+      if(currentUser)
+          getObject().then(() => {
+              setSpeech(base + uName + " " + uSurname);
+          });
       // get all docs
       // const userCollectionRef = collection(db, "users")
       // const getUsers = async () => {
@@ -44,7 +49,7 @@ export default function Home({ currentUser }) {
       //     setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
       // };
       //getUsers();
-  }, []);
+  }, [currentUser]);
 
   return (
     <div>

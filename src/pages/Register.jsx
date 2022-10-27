@@ -4,10 +4,9 @@ import { auth } from "../initFirebase";
 import { useNavigate } from "react-router-dom";
 import { getDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../initFirebase";
-import { userUIDInfo } from "../services/getCurrentUserUid"
 import "../css/Register.scss"
 
-export default function Register() {
+export default function Register({ currentUser }) {
   const navigate = useNavigate();
 
   const handleRegister = async (e, email, password, name, surname, country, gender) => {
@@ -16,7 +15,7 @@ export default function Register() {
     try {
       let data = await createUserWithEmailAndPassword(auth, email, password);
       let userUID = data.user.uid;
-      userUIDInfo.setUID = userUID;
+      // userUIDInfo.setUID = userUID;
 
       // TODO : pass the name, surname, role and answers as handleregister inputs
       await setDoc(doc(db, "users", userUID), {
@@ -26,7 +25,6 @@ export default function Register() {
         country: country,
         gender: gender,
         role: "Client",
-        avatarID: "",
         questionnaire: [],
       });
       navigate("/avatar");

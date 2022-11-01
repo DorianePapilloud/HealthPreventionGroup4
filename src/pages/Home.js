@@ -10,39 +10,39 @@ import Header from "./Header";
 
 export default function Home() {
 
-  const [users, setUsers] = useState([]) ;
-  const [speech, setSpeech] = useState("");
-  let uName = "";
-  let uSurname = "";
-  let base = "";
-  let userUID = "Guest";
+  // const [users, setUsers] = useState([]) ;
+  // const [speech, setSpeech] = useState("");
+  // let uName = "";
+  // let uSurname = "";
+  // let base = "";
+  // let userUID = "Guest";
 
-  useEffect(() => {
-      if (currentUser){
-          console.log("Home UID test " + currentUser.uid);
-          userUID = currentUser.uid;
-      }
-
-      const getObject = async () => {
-          const ref = doc(db, "users", userUID).withConverter(userConverter);
-          const docSnap = await getDoc(ref);
-
-          if (docSnap.exists()) {
-              // Convert to User object
-              const user = docSnap.data();
-              // set the text to display
-              uName = await user.getName();
-              uSurname = await user.getSurname();
-              base = "Welcome back ";
-          } else {
-              console.log("No user found!");
-          }
-      }
-
-      if(currentUser)
-          getObject().then(() => {
-              setSpeech(base + uName + " " + uSurname);
-          });
+  // useEffect(() => {
+  //     if (currentUser){
+  //         console.log("Home UID test " + currentUser.uid);
+  //         userUID = currentUser.uid;
+  //     }
+  //
+  //     const getObject = async () => {
+  //         const ref = doc(db, "users", userUID).withConverter(userConverter);
+  //         const docSnap = await getDoc(ref);
+  //
+  //         if (docSnap.exists()) {
+  //             // Convert to User object
+  //             const user = docSnap.data();
+  //             // set the text to display
+  //             uName = await user.getName();
+  //             uSurname = await user.getSurname();
+  //             base = "Welcome back ";
+  //         } else {
+  //             console.log("No user found!");
+  //         }
+  //     }
+  //
+  //     if(currentUser)
+  //         getObject().then(() => {
+  //             setSpeech(base + uName + " " + uSurname);
+  //         });
       // get all docs
       // const userCollectionRef = collection(db, "users")
       // const getUsers = async () => {

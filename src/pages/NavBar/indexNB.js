@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Nav, NavBarContainer, NavLinks, NavCenter, NavLeft, NavRight, User} from "./NavBar";
 import userImg from "../../images/loginRegister/user.jpg";
-import {userUIDInfo} from "../../services/getCurrentUserUid";
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../../initFirebase";
 import {userConverter} from "../../objects/user";
@@ -10,9 +9,12 @@ import {userConverter} from "../../objects/user";
 export default function NavBar({ currentUser }) {
 
     const [users, setUsers] = useState([]) ;
+    let userUID = "Guest";
 
     useEffect(() => {
-        let userUID = userUIDInfo.getUID;
+        if(currentUser){
+            userUID = currentUser.uid;
+        }
 
         const getObject = async () => {
             const ref = doc(db, "users", userUID).withConverter(userConverter);

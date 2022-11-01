@@ -2,7 +2,6 @@ import React from "react";
 import 'survey-core/defaultV2.min.css';
 import {Model, StylesManager} from "survey-core";
 import {Survey} from "survey-react-ui";
-import {userUIDInfo} from "./services/getCurrentUserUid";
 import {doc, addDoc, collection, getDoc, updateDoc, arrayUnion} from "firebase/firestore";
 import {db} from "./initFirebase";
 import {userConverter} from "./objects/user";
@@ -305,7 +304,7 @@ function Questionnaire({currentUser})  {
 
     let userQuestionnaires = [];
 
-    let userUID = userUIDInfo.getUID;
+    let userUID = currentUser.uid;
     console.log(userUID);
 
     const survey1 = new Model(json);

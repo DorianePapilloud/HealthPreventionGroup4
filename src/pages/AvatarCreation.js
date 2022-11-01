@@ -1,20 +1,20 @@
 import {useNavigate} from "react-router-dom";
 import AvatarForm from "../components/AvatarForm";
 import {db} from "../initFirebase";
-import {userUIDInfo} from "../services/getCurrentUserUid";
 import {doc, setDoc} from "firebase/firestore";
 import {avatarInfo} from "../services/getCurrentAvatar";
 
-export default function AvatarCreation() {
+export default function AvatarCreation({ currentUser }) {
     const navigate = useNavigate();
 
     // set the data
     const face = avatarInfo.getFace
     const head = avatarInfo.getHead;
     const body = avatarInfo.getBody;
-
+    console.log(currentUser.uid);
     const handleAvatarCreation = async () => {
-        let userUID = userUIDInfo.getUID;
+        console.log("Avatar UID test : " + currentUser.uid);
+        let userUID = currentUser.uid;
 
         try {
             // create avatar in DB with the data set

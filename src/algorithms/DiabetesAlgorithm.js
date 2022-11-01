@@ -6,14 +6,14 @@ export class DiabetesAlgorithm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            gender: 0,
-            age: 1,
-            height: 185,
-            weight: 75,
-            hypertension: 0,
-            highBloodGlucose: 1,
-            sport: 3,
-            alim: 1,
+            gender: props.gender,
+            age: props.age,
+            height: props.height,
+            weight: props.weight,
+            hypertension: props.hypertension,
+            highBloodGlucose: props.highBloodGlucose,
+            sport: props.sport,
+            alim: props.alim,
         }
     }
 
@@ -83,7 +83,7 @@ export class DiabetesAlgorithm extends React.Component {
         }
     }
 
-    calculateDiabetesRisk() {
+    calculateDiabetesRisk (){
         let points;
         points = this.getPointsForAge() + this.getPointsForBMI() + 3
             + this.getPointsForHypertension() + this.getPointsForHighBloodGlucose()

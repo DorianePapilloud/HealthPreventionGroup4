@@ -10,13 +10,13 @@ import { auth } from "./initFirebase";
 import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import Questionnaire from "./Questionnaire";
-import { userUIDInfo } from "./services/getCurrentUserUid"
 import AvatarCreation from "./pages/AvatarCreation";
 import NavBar from "./pages/NavBar/indexNB";
 import {DiabetesAlgorithm} from "./algorithms/DiabetesAlgorithm";
 import {InfarctAlgorithm} from "./algorithms/InfarctAlgorithm";
 import {NoInfarctAlgorithm} from "./algorithms/NoInfarctAlgorithm";
 import {CancerAlgorithm} from "./algorithms/CancerAlgorithm";
+import Results from "./pages/Results"
 import AdminPage from "./pages/AdminPage";
 
 //test
@@ -29,12 +29,6 @@ export default function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      if(!currentUser === undefined){
-        userUIDInfo.setUID = user.uid ;
-      }
-      else{
-        userUIDInfo.setUID = "Guest";
-      }
     });
 
     // Unsubscribe from changes when App is unmounted
@@ -61,11 +55,12 @@ export default function App() {
       <header className="App-header">
         <Routes>
           <Route path="/" element={<Home currentUser={currentUser} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register currentUser={currentUser}/>} />
+          <Route path="/login" element={<Login currentUser={currentUser}/>} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/questionnaire" element={<Questionnaire currentUser={currentUser} />} />
-          <Route path="/avatar" element={<AvatarCreation />} />
+          <Route path="/avatar" element={<AvatarCreation currentUser={currentUser}/>} />
+          <Route path="/results" element={<Results currentUser={currentUser}/>} />
           <Route path="/cancer" element={<CancerAlgorithm />} />
           <Route path="/infarct" element={<InfarctAlgorithm />} />
           <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />

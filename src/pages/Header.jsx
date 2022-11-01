@@ -1,5 +1,6 @@
 import "../css/Header.scss"
 import headerImg from "../images/loginRegister/Wave1.jpg"
+import {Link} from "react-router-dom";
 
 
 export default function Header(){

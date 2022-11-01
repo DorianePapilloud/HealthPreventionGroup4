@@ -2,11 +2,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../initFirebase";
 import UserLoginForm from "../components/UserLoginForm";
 import { useNavigate } from "react-router-dom";
-import {userUIDInfo} from "../services/getCurrentUserUid";
 import {Link} from "react-router-dom";
 import logo from "../images/loginRegister/LogoHealthCareApp.png"
 import welcomeImg from "../images/loginRegister/DoctorsBG1.gif"
 import "../css/Login.scss"
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,9 +15,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      let data = await signInWithEmailAndPassword(auth, email, password);
-      let userUID = data.user.uid;
-      userUIDInfo.setUID = userUID;
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (e) {
       console.error(e);

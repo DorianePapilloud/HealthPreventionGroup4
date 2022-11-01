@@ -1,0 +1,117 @@
+$main-color: #4dd6b6;
+
+h6{
+  color: #2c2d33;
+}
+
+.link{
+  color: $main-color;
+  text-decoration: none;
+}
+
+.main-login{
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow-x: hidden;
+  background: linear-gradient(to right, #cfcfcf 50%, $main-color 50%);
+}
+
+.login-contain{
+  height: 80vh;
+  width: 70%;
+  background: linear-gradient(to right bottom, rgba(236,236,236,0.7), rgba(236,236,236,0.4));
+  border-radius: 1rem;
+  margin: 2rem auto;
+  box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .left-side,.right-side{
+    margin: 2rem;
+    box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
+    height: 80%;
+    width: 100%;
+  }
+
+  .left-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .img-class{
+      height: 6rem;
+
+      #img_id{
+        height: 100%;
+        object-fit: cover;
+      }
+
+    }
+
+    input{
+      display: block;
+      border: none;
+      height: 2rem;
+      width: 70%;
+      margin: auto;
+      margin-bottom: 1.5rem;
+      padding: 0.2rem 1rem;
+      font-size: small;
+      color: gray;
+      transition: all 0.1s ease-in-out;
+
+      &:focus{
+        outline: none;
+        border: none;
+      }
+      &:hover{
+        outline: 0.5px solid $main-color;
+        box-shadow: 2px 2px 9px -1px $main-color;
+      }
+    }
+
+    label{
+      display: block;
+      margin: auto;
+      text-align: left;
+      width: 78%;
+      font-size: small;
+      color: gray;
+      margin-bottom: 0.5rem;
+    }
+
+    #sub_button{
+      width: 80%;
+      background: $main-color;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      transition: all 0.5s ease;
+
+      &:hover{
+        box-shadow: 4px 3px 9px -1px gray;
+        transform: translateY(-5px);
+      }
+    }
+  }
+
+  .right-side{
+    .welcome_note{
+
+    }
+
+    .welcomeImg{
+      height: 50%;
+      width: 70%;
+      margin: 5rem auto;
+
+      #welcome_doctors{
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+}

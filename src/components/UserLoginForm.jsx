@@ -16,17 +16,21 @@ export default function UserLoginForm({ handleSubmit, submitButtonLabel }) {
         handleSubmit(e, email, password);
       }}
     >
+      <label for="email1">Email</label>
       <input
-        type="text"
-        placeholder="email"
+        id="email1"
+        type="email"
+        placeholder="Email address"
         value={email}
         onChange={handleEmailChange}
         required
       />
       <br />
+      <label htmlFor="pass1">Password</label>
       <input
+        id="pass1"
         type="password"
-        placeholder="password"
+        placeholder="Password"
         value={password}
         onChange={handlePasswordChange}
         required

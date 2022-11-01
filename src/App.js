@@ -1,6 +1,6 @@
 import "./App.css";
 import "./Questionnaire"
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -28,6 +28,7 @@ export default function App() {
   /* Watch for authentication state changes */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("User is", user);
       setCurrentUser(user);
     });
 

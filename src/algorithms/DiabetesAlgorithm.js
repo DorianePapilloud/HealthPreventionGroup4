@@ -83,7 +83,7 @@ export class DiabetesAlgorithm extends React.Component {
         }
     }
 
-    calculateDiabetesRisk() {
+    calculateDiabetesRisk (){
         let points;
         points = this.getPointsForAge() + this.getPointsForBMI() + 3
             + this.getPointsForHypertension() + this.getPointsForHighBloodGlucose()

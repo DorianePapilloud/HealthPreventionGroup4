@@ -1,39 +1,45 @@
 import {useNavigate} from "react-router-dom";
+import React from "react";
 import {useEffect, useState} from "react";
 import ReactSlider from "react-slider";
 import Slider from '../components/Slider';
 import '../css/Results.scss';
 import {CancerAlgorithm} from "../algorithms/CancerAlgorithm";
 import {DiabetesAlgorithm} from "../algorithms/DiabetesAlgorithm";
+import {render} from "@testing-library/react";
 
-export default function Register({ currentUser }) {
-    const navigate = useNavigate();
-    const [currentSmoke, setCurrentSmoke] = useState("yes");
+export default class Results extends React.Component {
 
-    function smoke(event) {
-        setCurrentSmoke(event.target.value);
-        console.log(currentSmoke);
+    constructor(props){
+        super(props);
+        this.diabetAlgo = React.createRef();
+        this.state = {
+            age : 8
+        }
+    }
+
+    onClick = () => {
+        console.log(this.state.age);
+        this.diabetAlgo.current.setState({
+            age: this.state.age
+        });
+        this.diabetAlgo.current.calculateDiabetesRisk();
     }
 
 
-    useEffect(() => {
-        // set the currentUser values
-    }, [currentUser]);
-
-
+render()
+{
     return (
         <div>
-            <DiabetesAlgorithm gender={0}/>
+            <DiabetesAlgorithm ref={this.diabetAlgo}/>
+            <button onClick={this.onClick}>refresh</button>
             <h2>Parameters that can be modified :</h2>
             <div>Weight value in kg: <Slider normalValue={80} initialState={50} title={"weight"}></Slider></div>
             <p>Do you smoke ? </p>
-            <div onChange={smoke}>
-                <input type="radio" value="no" name="smoke" /> Yes
-                <input type="radio" value="yes" name="smoke" /> No
-            </div>
             <p>Physical Activity</p>
             <p>Healthy Food</p>
             <p>Alcohol</p>
         </div>
-    );
+    )
+}
 }

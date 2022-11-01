@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@firebase/firestore-types": "^2.5.0",
+    "@react-native-community/slider": "^4.3.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

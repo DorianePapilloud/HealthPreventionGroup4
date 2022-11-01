@@ -7,6 +7,7 @@ import logo from "../images/loginRegister/LogoHealthCareApp.png"
 import welcomeImg from "../images/loginRegister/DoctorsBG1.gif"
 import "../css/Login.scss"
 
+
 export default function Login() {
   const navigate = useNavigate();
 

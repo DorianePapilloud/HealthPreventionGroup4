@@ -6,14 +6,14 @@
 }
 .body {
     position: absolute;
-    left: 46%;
-    top: 45.8%;
+    left: 40%;
+    top: 36%;
     z-index: 0;
 }
 .head {
     position: absolute;
-    left: 47.7%;
-    top: 39%;
+    left: 45.3%;
+    top: 37%;
     z-index: 1;
 }
 .info {

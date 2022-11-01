@@ -16,6 +16,7 @@ import {DiabetesAlgorithm} from "./algorithms/DiabetesAlgorithm";
 import {InfarctAlgorithm} from "./algorithms/InfarctAlgorithm";
 import {NoInfarctAlgorithm} from "./algorithms/NoInfarctAlgorithm";
 import {CancerAlgorithm} from "./algorithms/CancerAlgorithm";
+import Results from "./pages/Results"
 import AdminPage from "./pages/AdminPage";
 
 //test
@@ -59,6 +60,7 @@ export default function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/questionnaire" element={<Questionnaire currentUser={currentUser} />} />
           <Route path="/avatar" element={<AvatarCreation currentUser={currentUser}/>} />
+          <Route path="/results" element={<Results currentUser={currentUser}/>} />
           <Route path="/cancer" element={<CancerAlgorithm />} />
           <Route path="/infarct" element={<InfarctAlgorithm />} />
           <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />

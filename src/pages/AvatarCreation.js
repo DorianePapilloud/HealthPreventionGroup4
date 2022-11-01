@@ -11,7 +11,7 @@ export default function AvatarCreation({ currentUser }) {
     const face = avatarInfo.getFace
     const head = avatarInfo.getHead;
     const body = avatarInfo.getBody;
-
+    console.log(currentUser.uid);
     const handleAvatarCreation = async () => {
         console.log("Avatar UID test : " + currentUser.uid);
         let userUID = currentUser.uid;

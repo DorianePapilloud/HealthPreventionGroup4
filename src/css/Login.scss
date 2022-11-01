@@ -1,5 +1,5 @@
 $main-color: #4dd6b6;
-$font : 'Calibri Light', sans-serif;
+$font : 'Corbel Light', sans-serif;
 h6{
   font-family: $font;
   font-size: small;
@@ -44,6 +44,7 @@ h6{
     justify-content: center;
     .img-class{
       height: 6rem;
+      padding-bottom: 20px;
       #img_id{
         height: 100%;
         object-fit: cover;
@@ -60,6 +61,7 @@ h6{
       font-size: small;
       color: gray;
       transition: all 0.1s ease-in-out;
+      border-radius: 12px;
       &:focus{
         outline: none;
         border: none;
@@ -71,12 +73,11 @@ h6{
     }
     label{
       display: block;
-      margin: auto;
       text-align: left;
       width: 78%;
       font-size: small;
       color: gray;
-      margin-bottom: 0.5rem;
+      margin: auto auto 0.5rem;
     }
     #sub_button{
       width: 80%;
@@ -86,6 +87,7 @@ h6{
       cursor: pointer;
       padding: 0.5rem 1rem;
       transition: all 0.5s ease;
+      border-radius: 12px;
       &:hover{
         box-shadow: 4px 3px 9px -1px gray;
         transform: translateY(-5px);
@@ -95,6 +97,7 @@ h6{
   .right-side{
     .welcome_note{
       font-family: sans-serif;
+      color: #26343D;
     }
     .welcomeImg{
       height: 50%;

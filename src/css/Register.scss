@@ -1,5 +1,5 @@
 $secondary-color: #26343D;
-$font : "Calibri Light", sans-serif;
+$font : "Corbel Light", sans-serif;
 
 .main-register{
   min-height: 100vh;
@@ -8,25 +8,47 @@ $font : "Calibri Light", sans-serif;
   background: linear-gradient(to right, $secondary-color 50%, #cfcfcf 50%);
 }
 
+.elementSideBySide{
+  display: flex;
+  margin-left: 40px;
+
+  .dropDownList{
+    width: 44%;
+    height: 40px;
+    font-size: 15px;
+    color: $secondary-color;
+    position: relative;
+    text-align: center;
+    display: block;
+    margin-bottom: 25px;
+    border-radius: 12px;
+  }
+}
+
 .input-group{
-  width: 60%;
   position: relative;
+  display: block;
+  margin: auto;
+  transition: all 0.1s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
 
   h5{
     font-size: 15px;
-    font-style: small;
     font-weight: 300;
-    color: gray;
+    color: #26343D;
     position: absolute;
     left: 20%;
-    top: 0rem;
+    top: -1.2rem;
     margin: 0.5rem auto;
-    background: white;
+
   }
 
   input{
     margin: 1.2rem auto;
-    width: 80%;
     border: none;
     padding: 0.5rem 0.5rem;
     box-shadow: 0.1rem 0.1rem 0.3rem 0.1rem gray;

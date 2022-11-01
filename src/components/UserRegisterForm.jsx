@@ -1,6 +1,9 @@
 import { useState , useMemo } from "react";
 import Select from 'react-select'
 import countryList from 'react-select-country-list'
+import styled from 'styled-components';
+import {List} from "survey-react-ui";
+import {getName} from "country-list";
 
 
 export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
@@ -8,15 +11,22 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState("");
   const [gender, setGender] = useState("");
   const [role, setRole] = useState("");
   const [avatarID, setAvatarID] = useState("");
 
-  const options = useMemo(() => countryList().getData(), [])
+  // const options = useMemo(() => countryList().getData(), [])
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleNameChange = (e) => setName(e.target.value);
+  const handleSurnameChange = (e) => setSurname(e.target.value);
+  const handleGenderChange = (e) => setGender(e.target.value);
+  const handleRoleChange = (e) => setRole(e.target.value);
+  const handleAvatarIDChange = (e) => setAvatarID(e.target.value);
   const changeHandler = country => { setCountry(country) }
-
-
+  const countryList = require('country-list');
+  const myList = countryList.getNames()
   const genderOptions = [
         // {
         //   label: "",
@@ -32,13 +42,6 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
         },
       ];
 
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleSurnameChange = (e) => setSurname(e.target.value);
-  const handleGenderChange = (e) => setGender(e.target.value);
-  const handleRoleChange = (e) => setRole(e.target.value);
-  const handleAvatarIDChange = (e) => setAvatarID(e.target.value);
 
   return (
               <form
@@ -46,6 +49,18 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
                     handleSubmit(e, email, password, name, surname, country, gender);
                   }}
               >
+                <div className={"elementSideBySide"}>
+                  <select className="dropDownList" value={gender} onChange={handleGenderChange}>
+                    {genderOptions.map((option) => (
+                        <option value={option.value}>{option.label}</option>
+                    ))}
+                  </select>
+                  <select className="dropDownList" value="Switzerland" onChange={changeHandler}>
+                    {myList.map((option) => (
+                        <option value={option.name}>{option.code}</option>
+                    ))}
+                  </select>
+                </div>
                 <div className="input-group">
                   <h5>First Name</h5>
                   <input
@@ -67,16 +82,6 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
                       onChange={handleSurnameChange}
                       required
                   />
-                </div>
-                <div>
-                  <select value={gender} onChange={handleGenderChange}>
-                    {genderOptions.map((option) => (
-                        <option value={option.value}>{option.label}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <Select placeholder={"country"} options={options} value={country} onChange={changeHandler} />
                 </div>
                 <div className="input-group">
                   <h5>Email</h5>

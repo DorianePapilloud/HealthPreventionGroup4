@@ -25,18 +25,18 @@ export const NavBarContainer = styled.div`
   z-index: 10;
   width: 100%;
   padding: 0 24px;
-  max-width: 1100px;
 `
 
 export const NavLinks = styled(LinkR)`
   color: #282c34;
-  font-family: 'Calibri Light', sans-serif;
+  font-family: 'Corbel Light', sans-serif;
   justify-self: flex-start;
   cursor: pointer;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
   margin-left: 24px;
+  margin-right: 24px;
   font-weight: bold;
   text-decoration: none;
   &:hover {
@@ -73,6 +73,11 @@ export const NavLeft = styled.div`
 `
 
 export const User = styled.img`
-  max-width: 10%;
+  width: 12%;
   height: auto;
 `
+
+export const LogoWeCare = styled.img`
+  width: 20%;
+  height: auto;
+  `

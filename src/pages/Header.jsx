@@ -1,5 +1,5 @@
 import "../css/Header.scss"
-import headerImg from "../images/loginRegister/Wave1.jpg"
+import headerImg from "../images/loginRegister/Wave.jpg"
 
 
 export default function Header(){

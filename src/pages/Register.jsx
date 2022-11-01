@@ -7,7 +7,7 @@ import { db } from "../initFirebase";
 import { userUIDInfo } from "../services/getCurrentUserUid"
 import "../css/Register.scss"
 import logo from "../images/loginRegister/LogoHealthCareApp.png"
-import registerImage from "../images/loginRegister/RegisterWhiteBG.gif"
+import registerImage from "../images/loginRegister/OnlineDoctor.gif"
 
 
 export default function Register() {

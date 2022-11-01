@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Nav, NavBarContainer, NavLinks, NavCenter, NavLeft, NavRight, User} from "./NavBar";
+import {Nav, NavBarContainer, NavLinks, NavCenter, NavLeft, NavRight, User, LogoWeCare} from "./NavBar";
 import userImg from "../../images/loginRegister/user.jpg";
+import logoImg from "../../images/loginRegister/LogoHealthCareApp.png";
 import {userUIDInfo} from "../../services/getCurrentUserUid";
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../../initFirebase";
@@ -35,14 +36,18 @@ export default function NavBar({ currentUser }) {
             <Nav>
                 <NavBarContainer>
                     <NavLeft>
+                        <LogoWeCare src={logoImg}></LogoWeCare>
                         <NavLinks to='/'>WeCare</NavLinks>
                     </NavLeft>
                     <NavCenter>
                             <NavLinks to='/'>Home</NavLinks>
+                        |
                             <NavLinks to='/'>About</NavLinks>
+                        |
                             <NavLinks to='/register'>Register</NavLinks>
                     </NavCenter>
                     <NavRight>
+                        <User src={userImg}></User>
                         {users.map((user) => {
                             return (
                                 <div>
@@ -62,7 +67,7 @@ export default function NavBar({ currentUser }) {
                                 Logout
                             </NavLinks>
                         )}
-                        <User src={userImg}></User>
+
                     </NavRight>
                 </NavBarContainer>
             </Nav>

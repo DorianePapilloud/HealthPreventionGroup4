@@ -40,11 +40,11 @@ export default function NavBar({ currentUser }) {
                         <NavLinks to='/'>WeCare</NavLinks>
                     </NavLeft>
                     <NavCenter>
-                            <NavLinks to='/'>Home</NavLinks>
+                        <NavLinks to='/'>Home</NavLinks>
                         |
-                            <NavLinks to='/'>About</NavLinks>
+                        <NavLinks to='/'>About</NavLinks>
                         |
-                            <NavLinks to='/register'>Register</NavLinks>
+                        <NavLinks to='/register'>Register</NavLinks>
                     </NavCenter>
                     <NavRight>
                         <User src={userImg}></User>

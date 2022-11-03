@@ -107,7 +107,7 @@ export class DiabetesAlgorithm extends React.Component {
                 <p>HighBloodGlucose: {this.getPointsForHighBloodGlucose()}</p>
                 <p>Sport: {this.getPointsForSport()}</p>
                 <p>Alim: {this.getPointsForAlim()}</p>
-                <p>Total: {this.calculateDiabetesRisk()}%</p>
+                <p><strong>Total: {this.calculateDiabetesRisk()}%</strong></p>
             </div>
         )
     }

@@ -5,13 +5,13 @@ export class NoInfarctAlgorithm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            age: 12,
-            gender: 1,
-            smoke: 1,
-            bloodPressure: 120,
-            chol: 6.3,
-            hdl: 1.4,
-            afinf: 1
+            age: props.age,
+            gender: props.gender,
+            smoke: props.smoke,
+            bloodPressure: props.bloodPressure,
+            chol: props.chol,
+            hdl: props.hdl,
+            afinf: props.afinf,
         }
     }
 
@@ -121,7 +121,7 @@ export class NoInfarctAlgorithm extends React.Component {
     resultAgeBloodPressure() {
         let resultAgeBloodPressure;
         if (this.state.gender === 1) {
-            resultAgeBloodPressure = this.get() * this.coeffMan[6];
+            resultAgeBloodPressure = this.getValueAgeBloodPressure() * this.coeffMan[6];
         } else {
             resultAgeBloodPressure = this.getValueAgeBloodPressure() * this.coeffWoman[6];
         }
@@ -203,7 +203,7 @@ export class NoInfarctAlgorithm extends React.Component {
                 <p>Age * HDL: {this.resultAgeHDL()}</p>
                 <p>Sum: {this.sum()} </p>
                 <p>Final risk: {this.finalRisk()}%</p>
-                <p>Final result: {this.finalResult()}%</p>
+                <p><strong>Final result: {this.finalResult()}%</strong></p>
             </div>
         )
     }

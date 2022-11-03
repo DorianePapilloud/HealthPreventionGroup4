@@ -5,18 +5,17 @@ export class InfarctAlgorithm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            age: 45,
-            gender: 0,
-            smoke: 1,
-            bloodPressure: 100,
-            diabetes: 1,
-            infarct: 1,
-            chol1: 3.2,
-            hdl: 1.5,
-
-            chol2 : 0,
-            eGRF : 120,
-            hsCRP : 0.1,
+            age: props.age,
+            gender: props.gender,
+            smoke: props.smoke,
+            bloodPressure: props.bloodPressure,
+            diabetes: props.diabetes,
+            infarct: props.infarct,
+            chol1: props.chol1,
+            hdl: props.hdl,
+            chol2 : props.chol2,
+            eGRF : props.eGRF,
+            hsCRP : props.hsCRP
         }
     }
 
@@ -133,7 +132,7 @@ export class InfarctAlgorithm extends React.Component {
                 <p>eGRF ml/min: {this.getValueForEGRF()} </p>
                 <p>hs CRP mg/l: {this.getValueForHsCRP()} </p>
                 <p>Total: {this.calculateTotal()}</p>
-                <p>Risk: {this.calculateInfarctRisk()}%</p>
+                <p><strong>Risk: {this.calculateInfarctRisk()}%</strong></p>
             </div>
         )
     }

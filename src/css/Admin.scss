@@ -1,0 +1,33 @@
+$main-color: #4dd6b6;
+
+.index_admin{
+  flex: 33.33%;
+}
+
+input{
+  margin: 1.2rem auto;
+  border: none;
+  padding: 0.5rem 0.5rem;
+  box-shadow: 0.1rem 0.1rem 0.3rem 0.1rem gray;
+  border-radius: 12px;
+
+  &:focus{
+    outline: none;
+  }
+}
+
+#save_changes{
+  width: 50%;
+  background: $main-color;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: all 0.5s ease;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  &:hover{
+    box-shadow: 4px 3px 9px -1px gray;
+    transform: translateY(-5px);
+  }
+}

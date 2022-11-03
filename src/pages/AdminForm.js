@@ -9,15 +9,7 @@ function AdminForm() {
     let [docs, setDocs] = useState({});
     let navigate = useNavigate;
 
-    function loadNormalValues() {
-        getDocs(collection(db, "normalValues")).then(queryResult => {
-            let temporaryDocs = {};
-            queryResult.forEach((doc) => {
-                temporaryDocs[doc.id] = doc.data();
-            })
-            setDocs(temporaryDocs);
-        })
-    }
+
 
     function handleInputChange(docName, fieldName, event) {
         let data = {...docs}
@@ -25,28 +17,49 @@ function AdminForm() {
         setDocs(data)
     }
 
-    function onSubmitForm(event) {
+
+    async function onSubmitForm(event) {
+        event.preventDefault();
         Object.keys(docs).forEach(docName => {
             const docReference = doc(db, "normalValues", docName);
             updateDoc(docReference, docs[docName]);
-            console.log(docReference)
+            console.log(docReference);
         })
     }
 
 
+    useEffect(() => {
 
-    useEffect(() => loadNormalValues, []);
+        async function loadNormalValues() {
+            try {
+                const normalValues = await getDocs(collection(db, "normalValues")).then(queryResult => {
+                    let temporaryDocs = {};
+                    queryResult.forEach((doc) => {
+                        temporaryDocs[doc.id] = doc.data();
+                    })
+                    setDocs(temporaryDocs);
+                })} catch (err) {
+                console.log("Error occured when fetching")
+             }
+            }
+
+            loadNormalValues()
+    }, []);
+
 
     return (
         <form onSubmit={onSubmitForm}>
             {Object.keys(docs).map((doc, index) => {
                 return <div className={"index_admin"} key={index}>
                     <h2>{doc}</h2>
+
+
                     {Object.keys(docs[doc]).map((field, index) => {
                         return <div key={index}>
-                                <p>
+
+                                <div>
                                     <label>{field}</label>
-                                </p>
+                                </div>
                                 <div>
                                     <input
                                         defaultValue={docs[doc][field]}

@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {collection, doc, getDocs, updateDoc} from "firebase/firestore";
 import {db} from "../initFirebase";
+import "../css/Admin.scss"
 
 function AdminForm() {
 
@@ -39,16 +40,13 @@ function AdminForm() {
     return (
         <form onSubmit={onSubmitForm}>
             {Object.keys(docs).map((doc, index) => {
-                return <div key={index}>
+                return <div className={"index_admin"} key={index}>
                     <h2>{doc}</h2>
-
-
                     {Object.keys(docs[doc]).map((field, index) => {
                         return <div key={index}>
-
-                                <div>
+                                <p>
                                     <label>{field}</label>
-                                </div>
+                                </p>
                                 <div>
                                     <input
                                         defaultValue={docs[doc][field]}
@@ -59,7 +57,7 @@ function AdminForm() {
                     })}
                 </div>
             })}
-            <button onClick={onSubmitForm}>
+            <button id={"save_changes"} onClick={onSubmitForm}>
                 Save changes
             </button>
         </form>

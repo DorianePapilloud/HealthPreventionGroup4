@@ -60,14 +60,3 @@ export default function Register() {
       </div>
   );
 }
-
-{/*<div className="left-side">*/}
-{/*  <div className="header">*/}
-{/*    <img id="img_logo" src={logo} alt="" />*/}
-{/*  </div>*/}
-{/*  <div className="body">*/}
-{/*    <img id="img_register" src={registerImage} alt="" />*/}
-{/*  </div>*/}
-{/*  <p>The information you will enter are not going to be visible for anyone else other than you.*/}
-{/*    We respect your privacy by not keeping any personal information into your questionnaire. </p>*/}
-{/*</div>*/}

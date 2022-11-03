@@ -6,14 +6,14 @@ export class DiabetesAlgorithm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            gender: 0,
-            age: 1,
-            height: 185,
-            weight: 75,
+            gender: 1,
+            age: 20,
+            height: 190,
+            weight: 70,
             hypertension: 0,
-            highBloodGlucose: 1,
-            sport: 3,
-            alim: 1,
+            highBloodGlucose: 0,
+            sport: 0,
+            alim: 0,
         }
     }
 

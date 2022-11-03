@@ -5,9 +5,9 @@ export class InfarctAlgorithm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            age: 45,
-            gender: 0,
-            smoke: 1,
+            age: 30,
+            gender: 1,
+            smoke: 0,
             bloodPressure: 100,
             diabetes: 1,
             infarct: 1,

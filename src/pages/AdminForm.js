@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {collection, doc, getDocs, updateDoc} from "firebase/firestore";
 import {db} from "../initFirebase";
-
+//
 function AdminForm() {
 
     let [docs, setDocs] = useState({});

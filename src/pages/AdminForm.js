@@ -9,14 +9,11 @@ function AdminForm() {
     let [docs, setDocs] = useState({});
     let navigate = useNavigate;
 
-
-
     function handleInputChange(docName, fieldName, event) {
         let data = {...docs}
         data[docName][fieldName] = Number(event.target.value);
         setDocs(data)
     }
-
 
     async function onSubmitForm(event) {
         event.preventDefault();
@@ -26,7 +23,6 @@ function AdminForm() {
             console.log(docReference);
         })
     }
-
 
     useEffect(() => {
 
@@ -45,7 +41,6 @@ function AdminForm() {
 
             loadNormalValues()
     }, []);
-
 
     return (
         <form onSubmit={onSubmitForm}>

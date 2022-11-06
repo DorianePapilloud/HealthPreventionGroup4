@@ -1,13 +1,19 @@
 $main-color: #4dd6b6;
 $font : 'Corbel Light', sans-serif;
+
+.error_message{
+  font-size: 15px;
+  color: indianred;
+}
+
 h6{
   font-family: $font;
   font-size: small;
   color: #555555;
 }
+
 .link{
   text-decoration: none;
-  font-style: 600;
   margin-left: 0.3rem;
   cursor: pointer;
   color: gray;
@@ -16,12 +22,14 @@ h6{
     color: cadetblue;
   }
 }
+
 .main-login{
   min-height: 100vh;
   min-width: 100vw;
   overflow-x: hidden;
   background: linear-gradient(to right, #cfcfcf 50%, $main-color 50%);
 }
+
 .login-contain{
   height: 80vh;
   width: 70%;
@@ -32,45 +40,53 @@ h6{
   display: flex;
   justify-content: center;
   align-items: center;
+
   .left-side,.right-side{
     margin: 2rem;
     box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
     height: 80%;
     width: 100%;
   }
+
   .left-side{
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     .img-class{
       height: 6rem;
       padding-bottom: 20px;
+
       #img_id{
         height: 100%;
         object-fit: cover;
       }
     }
+
     input{
       display: block;
       border: none;
       height: 2rem;
       width: 70%;
       margin: auto;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       padding: 0.2rem 1rem;
       font-size: small;
       color: gray;
       transition: all 0.1s ease-in-out;
       border-radius: 12px;
+
       &:focus{
         outline: none;
         border: none;
       }
+
       &:hover{
         outline: 0.5px solid $main-color;
         box-shadow: 2px 2px 9px -1px $main-color;
       }
     }
+
     label{
       display: block;
       text-align: left;
@@ -79,6 +95,7 @@ h6{
       color: gray;
       margin: auto auto 0.5rem;
     }
+
     #sub_button{
       width: 80%;
       background: $main-color;
@@ -88,21 +105,27 @@ h6{
       padding: 0.5rem 1rem;
       transition: all 0.5s ease;
       border-radius: 12px;
+      margin-bottom: 10px;
+
       &:hover{
         box-shadow: 4px 3px 9px -1px gray;
         transform: translateY(-5px);
       }
     }
   }
+
   .right-side{
+
     .welcome_note{
       font-family: sans-serif;
       color: #26343D;
     }
+
     .welcomeImg{
       height: 50%;
       width: 100%;
       margin: 5rem auto;
+
       #welcome_doctors{
         width: 100%;
         object-fit: cover;

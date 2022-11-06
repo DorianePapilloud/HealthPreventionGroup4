@@ -8,10 +8,12 @@ import { userUIDInfo } from "../services/getCurrentUserUid"
 import "../css/Register.scss"
 import logo from "../images/loginRegister/LogoHealthCareApp.png"
 import registerImage from "../images/loginRegister/OnlineDoctor.gif"
+import React from "react";
 
 
 export default function Register() {
   const navigate = useNavigate();
+  const [hasError, setError] = React.useState(false);
 
   const handleRegister = async (e, email, password, name, surname, country, gender) => {
     e.preventDefault();
@@ -35,12 +37,22 @@ export default function Register() {
       navigate("/avatar");
     } catch (e) {
       console.error(e);
+      setError(true)
     }
   };
   return (
       <div className='main-register'>
         <div className="login-contain">
           <div className="left-side">
+            <span className="error_message">
+                {(() => {
+                  if (hasError) {
+                    return (
+                        <div>E-mail already used !</div>
+                    )
+                  }
+                })()}
+              </span>
             <UserRegisterForm handleSubmit={handleRegister} submitButtonLabel="Register" />
             <div className="footer">
               <h6>Already have an account ?

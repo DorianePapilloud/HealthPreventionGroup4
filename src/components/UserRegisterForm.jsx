@@ -24,9 +24,11 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
   const handleGenderChange = (e) => setGender(e.target.value);
   const handleRoleChange = (e) => setRole(e.target.value);
   const handleAvatarIDChange = (e) => setAvatarID(e.target.value);
-  const changeHandler = country => { setCountry(country) }
+  const handleCountryChange = (e) => setCountry(e.target.value);
+
   const countryList = require('country-list');
-  const myList = countryList.getNames()
+  const myCountryList = countryList.getData()
+  console.log(myCountryList)
   const genderOptions = [
         // {
         //   label: "",
@@ -50,14 +52,14 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
                   }}
               >
                 <div className={"elementSideBySide"}>
-                  <select className="dropDownList" value={gender} onChange={handleGenderChange}>
+                  <select className="dropDownList" value={gender} defaultValue={""} onChange={handleGenderChange}>
                     {genderOptions.map((option) => (
                         <option value={option.value}>{option.label}</option>
                     ))}
                   </select>
-                  <select className="dropDownList" value="Switzerland" onChange={changeHandler}>
-                    {myList.map((option) => (
-                        <option value={option.name}>{option.code}</option>
+                  <select className="dropDownList" value={country} defaultValue={""} onChange={handleCountryChange}>
+                    {myCountryList.map((option) => (
+                        <option value={option.name}>{option.name}</option>
                     ))}
                   </select>
                 </div>
@@ -103,6 +105,7 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
                       value={password}
                       onChange={handlePasswordChange}
                       required
+
                   />
                 </div>
                 <button id="sub_button" type="submit">{submitButtonLabel}</button>

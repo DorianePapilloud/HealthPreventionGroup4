@@ -1,5 +1,6 @@
 
 import React from "react";
+import {CircularProgressBar} from "../components/CircularProgressBar";
 
 export class InfarctAlgorithm extends React.Component {
     constructor(props) {
@@ -112,7 +113,7 @@ export class InfarctAlgorithm extends React.Component {
         let percentage;
         percentage = ((1-Math.pow(0.61785,Math.exp(this.calculateTotal()-2.0869)))*1000)/10;
 
-        return percentage;
+        return Math.round(percentage);
     }
 
     render() {
@@ -120,19 +121,12 @@ export class InfarctAlgorithm extends React.Component {
         //test
         return (
             <div>
-                <p>Age: {this.getValueForAge()}</p>
-                <p>Gender: {this.getValueForGender()}</p>
-                <p>Smoke: {this.getValueForSmoke()}</p>
-                <p>Hypertension: {this.getValueForBloodPressure()}</p>
-                <p>Diabetes: {this.getValueForDiabetes()}</p>
-                <p>Infarct: {this.getValueForInfarct()}</p>
-                <p>total CHOL mmol/1: {this.getValueForCHOL1()} </p>
-                <p>total HDL: {this.getValueForHDL()}</p>
-                <p>total CHOL mmol/2: {this.getValueForCHOL2()}</p>
-                <p>eGRF ml/min: {this.getValueForEGRF()} </p>
-                <p>hs CRP mg/l: {this.getValueForHsCRP()} </p>
-                <p>Total: {this.calculateTotal()}</p>
-                <p><strong>Risk: {this.calculateInfarctRisk()}%</strong></p>
+                <div>
+                    <CircularProgressBar
+                        strokeWidth="5"
+                        sqSize="100"
+                        percentage={this.calculateInfarctRisk()}/>
+                </div>
             </div>
         )
     }

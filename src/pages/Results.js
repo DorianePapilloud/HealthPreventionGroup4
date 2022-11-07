@@ -9,7 +9,6 @@ import {render} from "@testing-library/react";
 import {NoInfarctAlgorithm} from "../algorithms/NoInfarctAlgorithm";
 import {CancerAlgorithm} from "../algorithms/CancerAlgorithm"
 import {InfarctAlgorithm} from "../algorithms/InfarctAlgorithm";
-
 export default class Results extends React.Component {
 
     constructor(props){
@@ -18,6 +17,10 @@ export default class Results extends React.Component {
         this.noInfarctAlgo = React.createRef();
         this.cancerAlgo = React.createRef();
         this.infarctAlgo = React.createRef();
+
+        this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
+
         this.state = {
             // diabetes
             gender: 1,
@@ -49,11 +52,15 @@ export default class Results extends React.Component {
             alcohol: 1,
             alcScore: 1,
             sportScore: 1,
-            alimScore: 1
+            alimScore: 1,
+
+            // display
+            value: 1
         }
     }
 
     componentDidMount() {
+        console.log("hefwv,k")
         this.onClick();
     }
 
@@ -114,31 +121,132 @@ export default class Results extends React.Component {
         this.cancerAlgo.current.getCancerRisk();
     }
 
+    increment() {
+        this.setState(prevState => {
+            return {value: prevState.value + 1}
+        })
+    }
+
+    decrement() {
+        this.setState(prevState => {
+            return {value: prevState.value > 0? --prevState.value : 0}
+        })
+    }
+
+
 
 render()
 {
-    return (
-        <div>
-            <h2>Parameters that can be modified :</h2>
-            <div>Weight value in kg: <Slider normalValue={80} initialState={50} title={"weight"}></Slider></div>
-            <p>Do you smoke ? </p>
-            <p>Physical Activity</p>
-            <p>Healthy Food</p>
-            <p>Alcohol</p>
 
-            <DiabetesAlgorithm ref={this.diabetAlgo}/>
-            <br/>
-            -----------------------------------------------------------------------
-            <br/>
-            <InfarctAlgorithm ref={this.infarctAlgo}/>
-            <br/>
-            -----------------------------------------------------------------------
-            <br/>
-            <NoInfarctAlgorithm ref={this.noInfarctAlgo}/>
-            <br/>
-            -----------------------------------------------------------------------
-            <br/>
-            <CancerAlgorithm ref={this.cancerAlgo}/>
+    return (
+        <div className="results-page">
+            <div className={"top-section"}>
+                <div className={"avatar-section"}>
+                    <div className={"result-avatar"}>
+                        {/*avatar goes here*/}
+                        Avatar
+                    </div>
+                    <div className={"result-avatar-description"}>
+                        {/*title under avatar goes here*/}
+                    </div>
+                </div>
+
+                <div className={"algo"}>
+                    <div className={"algo-section"}>
+                        {/*Diabetes*/}
+                        <div className={"algo-description"}>
+                            <div className={"algo-description-text"}>
+                                <h2>Diabetes</h2>
+                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
+                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
+                                    (Bando na bando)</p>
+                            </div>
+                            <div className={"algo-description-graph"}>
+                                <DiabetesAlgorithm ref={this.diabetAlgo}/>
+                            </div>
+                        </div>
+                        <div className={"algo-details-link"}>
+                            Details
+                            {/*link to bottom page*/}
+                        </div>
+                    </div>
+
+                    <div className={"algo-section"}>
+                        {/*Infarct*/}
+                        <div className={"algo-description"}>
+                            <div className={"algo-description-text"}>
+                                <h2>Infarct</h2>
+                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
+                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
+                                    (Bando na bando)</p>
+                            </div>
+                            <div className={"algo-description-graph"}>
+                                <InfarctAlgorithm ref={this.infarctAlgo}/>
+                            </div>
+                        </div>
+                        <div className={"algo-details-link"}>
+                            Details
+                            {/*link to bottom page*/}
+                        </div>
+                    </div>
+
+                    <div className={"algo-section"}>
+                        {/*Cancer*/}
+                        <div className={"algo-description"}>
+                            <div className={"algo-description-text"}>
+                                <h2>Cancer</h2>
+                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
+                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
+                                    (Bando na bando)</p>
+                            </div>
+                            <div className={"algo-description-graph"}>
+                                <CancerAlgorithm ref={this.cancerAlgo}/>
+                            </div>
+                        </div>
+                        <div className={"algo-details-link"}>
+                            Details
+                            {/*link to bottom page*/}
+                        </div>
+                    </div>
+
+                    <div className={"algo-section"}>
+                        {/*No Infarctus*/}
+                        <div className={"algo-description"}>
+                            <div className={"algo-description-text"}>
+                                <h2>No Infarct</h2>
+                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
+                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
+                                    (Bando na bando)</p>
+                            </div>
+                            <div className={"algo-description-graph"}>
+                                <NoInfarctAlgorithm ref={this.noInfarctAlgo}/>
+                            </div>
+                        </div>
+                        <div className={"algo-details-link"}>
+                            Details
+                            {/*link to bottom page*/}
+                        </div>
+                    </div>
+                </div>
+                <div className={"bottom-section"}>
+                    <div className="result-title">Parameters that can be modified :</div>
+                    <div className="result-question">Weight value in kg:</div>
+                    <div className="result-question">Do you smoke ? </div>
+                    <div className="result-question">Physical Activity</div>
+                    <div className="result-question">Healthy Food</div>
+                    <div className="result-question">Alcohol</div>
+                </div>
+            </div>
+
+            {/*<div className="quantity-input">*/}
+            {/*    <button className="quantity-input__modifier quantity-input__modifier--left" onClick={this.decrement}>*/}
+            {/*        &mdash;*/}
+            {/*    </button>*/}
+            {/*    <input className="quantity-input__screen" type="text" value={this.state.value} readOnly/>*/}
+            {/*    <button className="quantity-input__modifier quantity-input__modifier--right" onClick={this.increment}>*/}
+            {/*        &#xff0b;*/}
+            {/*    </button>*/}
+            {/*</div>*/}
             <button onClick={this.onClick}>refresh</button>
         </div>
     )

@@ -9,10 +9,15 @@ import {render} from "@testing-library/react";
 import {NoInfarctAlgorithm} from "../algorithms/NoInfarctAlgorithm";
 import {CancerAlgorithm} from "../algorithms/CancerAlgorithm"
 import {InfarctAlgorithm} from "../algorithms/InfarctAlgorithm";
-export default class Results extends React.Component {
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "../initFirebase";
+import {userConverter} from "../objects/user";
+import {questionnaireConverter} from "../objects/questionnaireOBJ";
 
+export default class Results extends React.Component {
     constructor(props){
         super(props);
+
         this.diabetAlgo = React.createRef();
         this.noInfarctAlgo = React.createRef();
         this.cancerAlgo = React.createRef();
@@ -22,12 +27,13 @@ export default class Results extends React.Component {
         this.decrement = this.decrement.bind(this);
 
         this.state = {
+            uid: this.props.cuid,
+            questionnaire: [],
             // diabetes
             gender: 1,
             age: 35,
             height: 180,
             weight: 100,
-            hypertension: 0,
             highBloodGlucose: 0,
             sport: 1,
             alim: 1,
@@ -38,29 +44,63 @@ export default class Results extends React.Component {
             diabetes: 0,
             infarct: 1,
             chol1: 1,
+
             hdl: 1,
-            chol2 : 1,
-            eGRF : 1,
-            hsCRP : 1,
+            chol2 : 0,
+            eGRF : 120,
+            hsCRP : 0.1,
 
             // noInfarct
-            chol: 1,
             afinf: 0,
 
             // cancer
             afcancer : 1,
             alcohol: 1,
-            alcScore: 1,
-            sportScore: 1,
-            alimScore: 1,
 
             // display
             value: 1
         }
     }
 
-    componentDidMount() {
-        console.log("hefwv,k")
+    async componentDidMount() {
+        console.log(this.state.uid);
+        // get the responses inside the database
+        let ref = doc(db, "users", this.state.uid).withConverter(userConverter);
+        let docSnap = await getDoc(ref);
+
+        if (!docSnap.exists()) {
+            ref = doc(db, "users", "Guest").withConverter(userConverter);
+            docSnap = await getDoc(ref);
+        }
+
+        // Convert to User object
+        let user = docSnap.data();
+        // set the text to display
+        const questID = await user.getQuestionnaire();
+        let refQuest = doc(db, "questionnaire", questID[questID.length-1]).withConverter(questionnaireConverter);
+        let docSnapQuest = await getDoc(refQuest);
+        let questOBJ = docSnapQuest.data();
+        let answers = await questOBJ.getAnswers();
+        console.log(answers[1].name);
+
+        this.setState({
+            gender: answers[0].value,
+            age: answers[1].value,
+            weight: answers[2].value,
+            height: answers[3].value,
+            hypertension: answers[4].value,
+            highBloodGlucose: answers[5].value,
+            chol1: answers[6].value,
+            diabetes: answers[7].value,
+            infarct: answers[8].value,
+            afcancer: answers[10].value,
+            afinf: answers[11].value,
+            smoke: answers[12].value,
+            alim: answers[13].value,
+            sport: answers[14].value,
+            alcohol: answers[15].value,
+        });
+
         this.onClick();
     }
 
@@ -71,7 +111,7 @@ export default class Results extends React.Component {
             age: this.state.age,
             height: this.state.height,
             weight: this.state.weight,
-            hypertension: this.state.hypertension,
+            hypertension: this.state.bloodPressure,
             highBloodGlucose: this.state.highBloodGlucose,
             sport: this.state.sport,
             alim: this.state.alim,
@@ -87,8 +127,9 @@ export default class Results extends React.Component {
             diabetes: this.state.diabetes,
             infarct: this.state.infarct,
             chol1: this.state.chol1,
-            hdl: this.state.hdl,
-            chol2 : this.state.chol2,
+
+            hdl: this.state.chol1,
+            chol2 : this.state.chol1,
             eGRF : this.state.eGRF,
             hsCRP : this.state.hsCRP
         });
@@ -99,7 +140,7 @@ export default class Results extends React.Component {
             gender: this.state.gender,
             smoke: this.state.smoke,
             bloodPressure: this.state.bloodPressure,
-            chol: this.state.chol,
+            chol: this.state.chol1,
             hdl: this.state.hdl,
             afinf: this.state.afinf,
         });
@@ -114,9 +155,6 @@ export default class Results extends React.Component {
             sport: this.state.sport,
             alcohol: this.state.alcohol,
             alim: this.state.alim,
-            alcScore: this.state.alcScore,
-            sportScore: this.state.sportScore,
-            alimScore: this.state.alimScore
         });
         this.cancerAlgo.current.getCancerRisk();
     }
@@ -137,7 +175,6 @@ export default class Results extends React.Component {
 
 render()
 {
-
     return (
         <div className="results-page">
             <div className={"top-section"}>
@@ -145,6 +182,7 @@ render()
                     <div className={"result-avatar"}>
                         {/*avatar goes here*/}
                         Avatar
+                        <p>{this.state.age}</p>
                     </div>
                     <div className={"result-avatar-description"}>
                         {/*title under avatar goes here*/}

@@ -61,7 +61,7 @@ export default function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/questionnaire" element={<Questionnaire currentUser={currentUser} />} />
           <Route path="/avatar" element={<AvatarCreation currentUser={currentUser}/>} />
-          <Route path="/results" element={<Results currentUser={currentUser}/>} />
+          <Route path="/results" element={<Results cuid={currentUser?currentUser.uid:"Guest"}/>} />
           <Route path="/cancer" element={<CancerAlgorithm />} />
           <Route path="/infarct" element={<InfarctAlgorithm />} />
           <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />

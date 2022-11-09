@@ -13,9 +13,6 @@ export class CancerAlgorithm extends React.Component {
             sport: props.sport,
             alcohol: props.alcohol,
             alim: props.alim,
-            alcScore: props.alcScore,
-            sportScore: props.sportScore,
-            alimScore: props.alimScore
         }
     }
 

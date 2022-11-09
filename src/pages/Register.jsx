@@ -6,20 +6,26 @@ import { getDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../initFirebase";
 import { userUIDInfo } from "../services/getCurrentUserUid"
 import "../css/Register.scss"
+import React from "react";
 import logo from "../images/loginRegister/LogoHealthCareApp.png"
 import registerImage from "../images/loginRegister/OnlineDoctor.gif"
+import UserContext from "../UserContext";
 
 
 export default function Register() {
   const navigate = useNavigate();
+  const userContext = React.useContext(UserContext);
+  const currentUser = userContext.currentUser;
 
   const handleRegister = async (e, email, password, name, surname, country, gender) => {
     e.preventDefault();
 
     try {
       let data = await createUserWithEmailAndPassword(auth, email, password);
-      let userUID = data.user.uid;
-      userUIDInfo.setUID = userUID;
+      let userUID = "Guest";
+      if(currentUser !== null){
+        userUID = currentUser.uid;
+      }
 
       // TODO : pass the name, surname, role and answers as handleregister inputs
       await setDoc(doc(db, "users", userUID), {

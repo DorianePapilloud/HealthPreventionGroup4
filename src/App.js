@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./initFirebase";
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import Logout from "./pages/Logout";
 import Questionnaire from "./Questionnaire";
 import AvatarCreation from "./pages/AvatarCreation";
@@ -18,6 +18,7 @@ import {NoInfarctAlgorithm} from "./algorithms/NoInfarctAlgorithm";
 import {CancerAlgorithm} from "./algorithms/CancerAlgorithm";
 import Results from "./pages/Results"
 import AdminPage from "./pages/AdminPage";
+import UserContext from "./UserContext";
 
 //test
 
@@ -49,19 +50,20 @@ export default function App() {
   }
 
   return (
+    <UserContext.Provider value={{currentUser, setCurrentUser}}>
     <div className="App">
       <div>
-        <NavBar currentUser={currentUser}></NavBar>
+        <NavBar></NavBar>
       </div>
       <header className="App-header">
         <Routes>
-          <Route path="/" element={<Home currentUser={currentUser} />} />
-          <Route path="/register" element={<Register currentUser={currentUser}/>} />
-          <Route path="/login" element={<Login currentUser={currentUser}/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/questionnaire" element={<Questionnaire currentUser={currentUser} />} />
-          <Route path="/avatar" element={<AvatarCreation currentUser={currentUser}/>} />
-          <Route path="/results" element={<Results cuid={currentUser?currentUser.uid:"Guest"}/>} />
+          <Route path="/avatar" element={<AvatarCreation />} />
+          <Route path="/questionnaire" element={<Questionnaire />} />
+          <Route path="/results" element={<Results />} />
           <Route path="/cancer" element={<CancerAlgorithm />} />
           <Route path="/infarct" element={<InfarctAlgorithm />} />
           <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />
@@ -70,5 +72,6 @@ export default function App() {
         </Routes>
       </header>
     </div>
+    </UserContext.Provider>
   );
 }

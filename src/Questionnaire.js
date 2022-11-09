@@ -1,14 +1,18 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import 'survey-core/defaultV2.min.css';
 import {Model, StylesManager} from "survey-core";
 import {Survey} from "survey-react-ui";
 import {doc, addDoc, collection, getDoc, updateDoc, arrayUnion} from "firebase/firestore";
 import {db} from "./initFirebase";
 import {userConverter} from "./objects/user";
+import UserContext from "./UserContext";
+import {useNavigate} from "react-router-dom";
 
 StylesManager.applyTheme("defaultV2");
 
-function Questionnaire({currentUser})  {
+function Questionnaire()  {
+
+    const navigate = useNavigate();
 
     let json = {
         pages: [
@@ -189,7 +193,7 @@ function Questionnaire({currentUser})  {
                 }, {
                     name: "afCancer",
                     isRequired: true,
-                    title: "Has one of your close relatives (mother, father, brother or sister ever had cancer ?",
+                    title: "Has one of your close relatives (mother, father, brother or sister) ever had cancer ?",
                     type: "radiogroup",
                     choices: [
                         {
@@ -304,14 +308,19 @@ function Questionnaire({currentUser})  {
 
     let userQuestionnaires = [];
 
-    let userUID = currentUser.uid;
-    console.log(userUID);
-
+    let userUID = "Guest";
+    const userContext = React.useContext(UserContext);
     const survey1 = new Model(json);
     const current = new Date();
-    const ref = doc(db, "users", userUID).withConverter(userConverter);
-
     const answers = [];
+
+    if(userContext.currentUser !== null){
+        userUID = userContext.currentUser.uid;
+    }
+
+    console.log(userUID);
+
+    const ref = doc(db, "users", userUID).withConverter(userConverter);
 
     survey1.onComplete.add(async (survey1) => {
         const date = current.getDate() + "." + (current.getMonth() + 1) + "." + current.getFullYear() + " " + current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
@@ -360,10 +369,12 @@ function Questionnaire({currentUser})  {
 
             await updateDB();
 
+            navigate('/results');
+
+
         }catch(e){
             console.error(e);
         }
-
     });
 
     return(

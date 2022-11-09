@@ -6,14 +6,20 @@ import {userUIDInfo} from "../../services/getCurrentUserUid";
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../../initFirebase";
 import {userConverter} from "../../objects/user";
+import UserContext from "../../UserContext";
 
 
-export default function NavBar({ currentUser }) {
+export default function NavBar() {
 
     const [users, setUsers] = useState([]) ;
+    const userContext = React.useContext(UserContext);
+    const currentUser = userContext.currentUser;
 
     useEffect(() => {
-        let userUID = userUIDInfo.getUID;
+        let userUID = "Guest";
+        if(currentUser !== null){
+            userUID = currentUser.uid;
+        }
 
         const getObject = async () => {
             const ref = doc(db, "users", userUID).withConverter(userConverter);

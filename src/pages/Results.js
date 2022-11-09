@@ -268,9 +268,25 @@ render()
                 </div>
                 <div className={"bottom-section"}>
                     <div className="result-title">Parameters that can be modified :</div>
-                    <div className="result-question">Weight value in kg:</div>
-                    <div className="result-question">Do you smoke ? </div>
-                    <div className="result-question">Physical Activity</div>
+                    <div className="result-question">Weight value in kg:
+                        <input type="number" id="weight" name="Weight:" min="50" max="180"/>
+                    </div>
+                    <div className="result-question">Do you smoke ?
+                        <input type="radio" id="smokeNo" value="0"/>
+                        <label htmlFor="smokeNo">No</label>
+                        <input type="radio" id="smokeYes" value="1"/>
+                        <label htmlFor="smokeYes">Yes</label>
+                    </div>
+                    <div className="result-question">Physical Activity
+                        <input type="radio" id="physical1" value="0"/>
+                        <label htmlFor="physical1">I don't do any</label>
+                        <input type="radio" id="physical2" value="1"/>
+                        <label htmlFor="physical2">30 minutes, 2-3 days a week</label>
+                        <input type="radio" id="physical3" value="2"/>
+                        <label htmlFor="physical3">30 minutes, 5 days a week</label>
+                        <input type="radio" id="physical4" value="3"/>
+                        <label htmlFor="physical4">More than 2 hours per week</label>
+                    </div>
                     <div className="result-question">Healthy Food</div>
                     <div className="result-question">Alcohol</div>
                 </div>

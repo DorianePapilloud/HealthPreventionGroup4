@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./initFirebase";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import Logout from "./pages/Logout";
 import Questionnaire from "./Questionnaire";
 import AvatarCreation from "./pages/AvatarCreation";
@@ -53,7 +53,7 @@ export default function App() {
     <UserContext.Provider value={{currentUser, setCurrentUser}}>
     <div className="App">
       <div>
-        <NavBar></NavBar>
+        <NavBar/>
       </div>
       <header className="App-header">
         <Routes>

@@ -265,13 +265,11 @@ render()
                                 )
                             })}
                         </div>
-                        <p>{this.state.age}</p>
                     </div>
                     <div className={"result-avatar-description"}>
                         {/*title under avatar goes here*/}
                     </div>
                 </div>
-
                 <div className={"algo"}>
                     <div className={"algo-section"}>
                         {/*Diabetes*/}
@@ -353,56 +351,72 @@ render()
                         </div>
                     </div>
                 </div>
-                <div className={"bottom-section"}>
-                    <div className="result-title">Parameters that can be modified :</div>
-                    <div className="result-question">Weight value in kg:
-                        <div className="quantity-input">
-                            <button className="quantity-input__modifier quantity-input__modifier--left" onClick={this.decrement}>
-                                &mdash;
+                <div>
+                    <div>Try to modify some values !</div>
+                    <div className="regroup_div">
+                        <div className="result-question">
+                            <h4 className="h4_results">Weight (kg):</h4>
+                            <button className="button_change" onClick={this.decrement}>
+                                &lt;
                             </button>
-                            <input className="quantity-input__screen" type="text" value={this.state.value} readOnly/>
-                            <button className="quantity-input__modifier quantity-input__modifier--right" onClick={this.increment}>
-                                &#xff0b;
+                            <input className="input_change" type="text" value={this.state.value} readOnly/>
+                            <button className="button_change" onClick={this.increment}>
+                                &gt;
                             </button>
                         </div>
-                    </div>
-                    <div className="result-question">Do you smoke ?
-                        <input type="radio" id="smokeNo" value={0} checked={this.state.smoke == 0} onChange={this.handleSmokeRadio}/>
-                        <label htmlFor="smokeNo">No</label>
-                        <input type="radio" id="smokeYes" value={1} checked={this.state.smoke == 1} onChange={this.handleSmokeRadio}/>
-                        <label htmlFor="smokeYes">Yes</label>
-                    </div>
-                    <div className="result-question">Physical Activity
-                        <input type="radio" id="physical1" value={0} checked={this.state.sport == 0} onChange={this.handleSportChange}/>
-                        <label htmlFor="physical1">I don't do any</label>
-                        <input type="radio" id="physical2" value={1} checked={this.state.sport == 1} onChange={this.handleSportChange}/>
-                        <label htmlFor="physical2">30 minutes, 2-3 days a week</label>
-                        <input type="radio" id="physical3" value={2} checked={this.state.sport == 2} onChange={this.handleSportChange}/>
-                        <label htmlFor="physical3">30 minutes, 5 days a week</label>
-                        <input type="radio" id="physical4" value={3} checked={this.state.sport == 3} onChange={this.handleSportChange}/>
-                        <label htmlFor="physical4">More than 2 hours per week</label>
-                    </div>
-                    <div className="result-question">Healthy Food
-                        <input type="radio" id="healthy1" value={0} checked={this.state.alim == 0} onChange={this.handleAlimChange}/>
-                        <label htmlFor="healthy1">Never</label>
-                        <input type="radio" id="healthy2" value={1} checked={this.state.alim == 1} onChange={this.handleAlimChange}/>
-                        <label htmlFor="healthy2">Times to times</label>
-                        <input type="radio" id="healthy3" value={2} checked={this.state.alim == 2} onChange={this.handleAlimChange}/>
-                        <label htmlFor="healthy3">Frequently</label>
-                        <input type="radio" id="healthy4" value={3} checked={this.state.alim == 3} onChange={this.handleAlimChange}/>
-                        <label htmlFor="healthy4">Always</label>
-                    </div>
-                    <div className="result-question">Alcohol
-                        <input type="radio" id="alcohol1" value={0} checked={this.state.alcohol == 0} onChange={this.handleAlcoholChange}/>
-                        <label htmlFor="alcohol1">Every day</label>
-                        <input type="radio" id="alcohol2" value={1} checked={this.state.alcohol == 1} onChange={this.handleAlcoholChange}/>
-                        <label htmlFor="alcohol2">3 to 6 days a week</label>
-                        <input type="radio" id="alcohol3" value={2} checked={this.state.alcohol == 2} onChange={this.handleAlcoholChange}/>
-                        <label htmlFor="alcohol3">1 to 2 days a week</label>
-                        <input type="radio" id="alcohol4" value={3} checked={this.state.alcohol == 3} onChange={this.handleAlcoholChange}/>
-                        <label htmlFor="alcohol4">less than a day a week</label>
-                        <input type="radio" id="alcohol5" value={4} checked={this.state.alcohol == 4} onChange={this.handleAlcoholChange}/>
-                        <label htmlFor="alcohol5">I never drink alcohol</label>
+                        <div className="result-question">
+                            <h4 className="h4_results">Smoke</h4>
+                            <input type="radio" className="radio_button" value={0} checked={this.state.smoke == 0} onChange={this.handleSmokeRadio}/>
+                            <text className="text_choices"> No </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={1} checked={this.state.smoke == 1} onChange={this.handleSmokeRadio}/>
+                            <text className="text_choices"> Yes </text>
+                        </div>
+                        <div className="result-question">
+                            <h4 className="h4_results">Physical Activity</h4>
+                            <input type="radio" className="radio_button" value={0} checked={this.state.sport == 0} onChange={this.handleSportChange}/>
+                            <text className="text_choices"> I don't do any </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={1} checked={this.state.sport == 1} onChange={this.handleSportChange}/>
+                            <text className="text_choices"> 30 minutes, 2-3 days a week </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={2} checked={this.state.sport == 2} onChange={this.handleSportChange}/>
+                            <text className="text_choices"> 30 minutes, 5 days a week </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={3} checked={this.state.sport == 3} onChange={this.handleSportChange}/>
+                            <text className="text_choices"> More than 2 hours per week </text>
+                            <br/>
+                        </div>
+                        <div className="result-question">
+                            <h4 className="h4_results">Healthy Food</h4>
+                            <input type="radio" className="radio_button" value={0} checked={this.state.alim == 0} onChange={this.handleAlimChange}/>
+                            <text className="text_choices"> Never </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={1} checked={this.state.alim == 1} onChange={this.handleAlimChange}/>
+                            <text className="text_choices"> Times to times </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={2} checked={this.state.alim == 2} onChange={this.handleAlimChange}/>
+                            <text className="text_choices"> Frequently </text><br/>
+                            <input type="radio" className="radio_button" value={3} checked={this.state.alim == 3} onChange={this.handleAlimChange}/>
+                            <text className="text_choices"> Always </text>
+                        </div>
+                        <div className="result-question">
+                            <h4 className="h4_results">Alcohol</h4>
+                            <input type="radio" className="radio_button" value={0} checked={this.state.alcohol == 0} onChange={this.handleAlcoholChange}/>
+                            <text className="text_choices"> Every day </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={1} checked={this.state.alcohol == 1} onChange={this.handleAlcoholChange}/>
+                            <text className="text_choices"> 3 to 6 days a week </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={2} checked={this.state.alcohol == 2} onChange={this.handleAlcoholChange}/>
+                            <text className="text_choices"> 1 to 2 days a week </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={3} checked={this.state.alcohol == 3} onChange={this.handleAlcoholChange}/>
+                            <text className="text_choices"> Less than a day a week </text>
+                            <br/>
+                            <input type="radio" className="radio_button" value={4} checked={this.state.alcohol == 4} onChange={this.handleAlcoholChange}/>
+                            <text className="text_choices"> I never drink alcohol </text>
+                        </div>
                     </div>
                 </div>
             </div>

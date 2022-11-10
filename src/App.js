@@ -17,10 +17,7 @@ import AdminPage from "./pages/AdminPage";
 import UserContext from "./UserContext";
 import Error404 from "./pages/Error404";
 import About from "./pages/About";
-import {doc, getDoc} from "firebase/firestore";
-import {userConverter} from "./objects/user";
 
-//test
 
 export default function App() {
   /* Current user state */

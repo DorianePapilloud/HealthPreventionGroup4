@@ -16,34 +16,6 @@ export class CancerAlgorithm extends React.Component {
         }
     }
 
-    getAlcoholScore() {
-        switch(this.state.alcohol){
-            case(0): return 4;
-                break;
-            case(1): return 3;
-                break;
-            case(2): return 2;
-                break;
-            case(3): return 1;
-                break;
-            case(4): return 0;
-                break;
-        }
-    }
-
-    getSportScore() {
-        switch(this.state.sport){
-            case(0): return 3;
-                break;
-            case(1): return 2;
-                break;
-            case(2): return 1;
-                break;
-            case(3): return 0;
-                break;
-        }
-    }
-
     getAfCancerPercent() {
         if(this.state.afcancer === 1)
         {
@@ -55,12 +27,11 @@ export class CancerAlgorithm extends React.Component {
     getSmokePercent() {
         if(this.state.smoke === 1)
         {
-            return 25
+            return 25;
+        }else{
+            return 0;
         }
-        return 0
     }
-
-
 
     getBMIPercent() {
         let bmi = Math.round(this.state.weight / Math.pow(this.state.height/100, 2));
@@ -68,17 +39,35 @@ export class CancerAlgorithm extends React.Component {
         return percent;
     }
 
-
-
     getSportPercent() {
-        let score = this.getSportScore();
+        let score = -1;
+        if (this.state.sport == 0) {
+            score = 3 ;
+        }else if (this.state.sport == 1) {
+            score = 2 ;
+        }else if (this.state.sport == 2) {
+            score = 1 ;
+        }else if (this.state.sport == 3) {
+            score = 0 ;
+        }
         let percent = (((score/3)*0.5)/4)*100;
         return percent;
     }
 
 
     getAlcoholPercent() {
-        let score = this.getAlcoholScore();
+        let score = -1;
+        if (this.state.alcohol == 0) {
+            score = 4 ;
+        }else if (this.state.alcohol == 1) {
+            score = 3 ;
+        }else if (this.state.alcohol == 2) {
+            score = 2 ;
+        }else if (this.state.alcohol == 3) {
+            score = 1 ;
+        }else if (this.state.alcohol == 4) {
+            score = 0 ;
+        }
         let percent = (((score/4)*0.5)/4)*100;
         return percent;
     }
@@ -87,7 +76,6 @@ export class CancerAlgorithm extends React.Component {
 
     getAlimPercent() {
         let score = -1;
-        console.log("Alim state : " + this.state.alim);
         if (this.state.alim == 1) {
             score = 2 ;
         }else if (this.state.alim == 0) {
@@ -96,8 +84,6 @@ export class CancerAlgorithm extends React.Component {
             score = 1 ;
         }else if (this.state.alim == 3) {
             score = 0 ;
-        }else {
-            console.log("error at getAlimPercent")
         }
         let percent = (((score/3)*0.5)/4)*100;
         return percent;
@@ -108,7 +94,11 @@ export class CancerAlgorithm extends React.Component {
     getCancerRisk() {
         let risk = Math.round(this.getAfCancerPercent() + this.getSmokePercent() + this.getBMIPercent() +
             this.getSportPercent() + this.getAlcoholPercent() + this.getAlimPercent() + 9);
-        return Math.round(risk);
+        if(Math.round(risk) > 100){
+            return 100;
+        }else{
+            return Math.round(risk);
+        }
     }
 
     //test

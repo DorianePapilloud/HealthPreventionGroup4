@@ -278,7 +278,11 @@ render()
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
                                 <h2>Diabetes</h2>
-                                <p>Losing weight, eating healthy food, and being active can really help reducing your diabetes risk.</p>
+                                <p>Diabetes is a chronic (long-lasting) health condition that affects how your body turns food into energy.
+                                    Your body breaks down most of the food you eat into sugar (glucose) and releases it into your bloodstream.
+                                    When your blood sugar goes up, it signals your pancreas to release insulin. Insulin acts like a key to let
+                                    the blood sugar into your body’s cells for use as energy.
+                                    Losing weight, eating healthy food, and being active can really help reducing your diabetes risk.</p>
                             </div>
                             <div className={"algo-description-graph"}>
                                 <DiabetesAlgorithm ref={this.diabetAlgo}/>
@@ -295,7 +299,10 @@ render()
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
                                 <h2>Cancer</h2>
-                                <p>You can reduce your risk of getting cancer by keeping a healthy weight, avoiding tobacco, limiting the amount of alcohol you drink, and protecting your skin.</p>
+                                <p>Cancer is a condition where cells in a specific part of the body grow and reproduce uncontrollably. The cancerous cells
+                                    can invade and destroy surrounding healthy tissue, including organs.
+                                    Cancer sometimes begins in one part of the body before spreading to other areas. This process is known as metastasis.
+                                    You can reduce your risk of getting cancer by keeping a healthy weight, avoiding tobacco, limiting the amount of alcohol you drink, and protecting your skin.</p>
                             </div>
                             <div className={"algo-description-graph"}>
                                 <CancerAlgorithm ref={this.cancerAlgo}/>
@@ -313,7 +320,10 @@ render()
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
                                 <h2>Infarct</h2>
-                                <p>You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco, limiting the amount of alcohol you drink, being physically active, keeping your stress level low.</p>
+                            <p>An infarct can occur when an area of necrosis occurs in a tissue or organ resulting from obstruction of the local circulation by a thrombus or embolus.
+                                This can eventually cause a heart attack to occur.
+                                You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco,
+                            limiting the amount of alcohol you drink, being physically active, keeping your stress level low.</p>
                             </div>
                             <div className={"algo-description-graph"}>
                                 <InfarctAlgorithm ref={this.infarctAlgo}/>
@@ -330,7 +340,8 @@ render()
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
                                 <h2>No Infarct</h2>
-                                <p>You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco, limiting the amount of alcohol you drink, being physically active, keeping your stress level low.</p>
+                            <p>You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco,
+                                limiting the amount of alcohol you drink, being physically active, keeping your stress level low.</p>
                             </div>
                             <div className={"algo-description-graph"}>
                                 <NoInfarctAlgorithm ref={this.noInfarctAlgo}/>

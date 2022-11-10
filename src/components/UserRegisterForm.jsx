@@ -30,10 +30,10 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
   const myCountryList = countryList.getData()
   console.log(myCountryList)
   const genderOptions = [
-        // {
-        //   label: "Male",
-        //   value: "male",
-        // },
+        {
+          label: "Male",
+          value: "male",
+        },
         {
           label: "Female",
           value: "female",
@@ -48,13 +48,13 @@ export default function UserRegisterForm({ handleSubmit, submitButtonLabel }) {
                   }}
               >
                 <div className={"elementSideBySide"}>
-                  <select className="dropDownList" value={gender} defaultValue={""} onChange={handleGenderChange}>
-                    <option value={"Male"}>Male</option> {genderOptions.map((option) => (
+                  <select className="dropDownList" value={gender} onChange={handleGenderChange}>
+                    <option>Gender</option> {genderOptions.map((option) => (
                         <option value={option.label}>{option.label}</option>
                     ))}
                   </select>
-                  <select className="dropDownList" value={country} defaultValue={""} onChange={handleCountryChange}>
-                    <option value={"Switzerland"}>Switzerland</option> {myCountryList.map((option) => (
+                  <select className="dropDownList" value={country} onChange={handleCountryChange}>
+                    <option>Country</option> {myCountryList.map((option) => (
                         <option value={option.name}>{option.name}</option>
                     ))}
                   </select>

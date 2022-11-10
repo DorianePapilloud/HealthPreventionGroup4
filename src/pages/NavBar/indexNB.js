@@ -24,6 +24,7 @@ export default function NavBar() {
             userContext.setCurrentAdmin(false);
         }
 
+
         const getObject = async () => {
             const ref = doc(db, "users", userUID).withConverter(userConverter);
             const docSnap = await getDoc(ref);

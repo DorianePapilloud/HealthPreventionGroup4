@@ -47,24 +47,21 @@ function AdminForm() {
                 age: e.target[14].value,
                 bloodPressure: e.target[15].value,
                 chol1: e.target[16].value,
-                chol2: e.target[17].value,
-                diabetes: e.target[18].value,
-                eGRF: e.target[19].value,
-                gender: e.target[20].value,
-                hdl: e.target[21].value,
-                hsCRP: e.target[22].value,
-                infarct: e.target[23].value,
-                smoke: e.target[24].value
+                diabetes: e.target[17].value,
+                gender: e.target[18].value,
+                hdl: e.target[19].value,
+                infarct: e.target[20].value,
+                smoke: e.target[21].value
             })
 
             //NoInfarct
         await updateDoc(doc(db, "normalValues","NoInfarct"), {
-            afinf: e.target[25].value,
-            age: e.target[26].value,
-            bloodPressure: e.target[27].value,
-            chol: e.target[28].value,
-            hdl: e.target[29].value,
-            smoke: e.target[30].value,
+            afinf: e.target[22].value,
+            age: e.target[23].value,
+            bloodPressure: e.target[24].value,
+            chol: e.target[25].value,
+            hdl: e.target[26].value,
+            smoke: e.target[27].value,
         })
 
     }
@@ -127,15 +124,13 @@ function AdminForm() {
                     <label> Age: <input value={normalValuesInfarct.age} name="ageInfarct" onChange={handleChange}/> </label> <br/>
                     <label> BloodPressure: <input value={normalValuesInfarct.bloodPressure} name="bloodPressureInfarct" onChange={handleChange}/> </label> <br/>
                     <label> Total CHOL mmol/l 1: <input value={normalValuesInfarct.chol1} name="chol1Infarct" onChange={handleChange}/> </label> <br/>
-                    <label> Total CHOL mmil/l 2: <input value={normalValuesInfarct.chol2} name="chol2Infarct" onChange={handleChange}/> </label> <br/>
                     <label> Diabetes: <input value={normalValuesInfarct.diabetes} name="diabetesInfarct" onChange={handleChange}/> </label> <br/>
-                    <label> eGRF ml/min: <input value={normalValuesInfarct.eGRF} name="eGRFInfarct" onChange={handleChange}/> </label> <br/>
                     <label> Gender: <input value={normalValuesInfarct.gender} name="genderInfarct" onChange={handleChange}/> </label> <br/>
                     <label> HDL mmol/l: <input value={normalValuesInfarct.hdl} name="hdlInfarct" onChange={handleChange}/> </label> <br/>
-                    <label> HS CRP mg/l: <input value={normalValuesInfarct.hsCRP} name="hsCRPInfarct" onChange={handleChange}/> </label> <br/>
                     <label> Infarct: <input value={normalValuesInfarct.infarct} name="infarctInfarct" onChange={handleChange}/> </label> <br/>
                     <label> Smoking: <input value={normalValuesInfarct.smoke} name="smokeInfarct" onChange={handleChange}/> </label> <br/>
                 </div>
+
 
                 <div className="column">
                     <h1 className="normalValue_title"> Normal values NoInfarct </h1>

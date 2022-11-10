@@ -13,8 +13,13 @@ import {doc, getDoc} from "firebase/firestore";
 import {db} from "../initFirebase";
 import {userConverter} from "../objects/user";
 import {questionnaireConverter} from "../objects/questionnaireOBJ";
-
+import UserContext from "../UserContext";
+import {avatarConverter} from "../objects/avatar";
+import {FaceImageData} from "../images/avatar/faces/face";
+import {HeadImageData} from "../images/avatar/heads/head";
+import {BodyImageData} from "../images/avatar/body/body";
 export default class Results extends React.Component {
+    static contextType = UserContext;
     constructor(props){
         super(props);
 
@@ -23,12 +28,12 @@ export default class Results extends React.Component {
         this.cancerAlgo = React.createRef();
         this.infarctAlgo = React.createRef();
 
-        this.increment = this.increment.bind(this);
-        this.decrement = this.decrement.bind(this);
-
         this.state = {
-            uid: this.props.cuid,
-            questionnaire: [],
+            // avatar
+            head: 0,
+            face: 0,
+            body: 0,
+
             // diabetes
             gender: 1,
             age: 35,
@@ -44,11 +49,7 @@ export default class Results extends React.Component {
             diabetes: 0,
             infarct: 1,
             chol1: 1,
-
             hdl: 1,
-            chol2 : 0,
-            eGRF : 120,
-            hsCRP : 0.1,
 
             // noInfarct
             afinf: 0,
@@ -60,18 +61,27 @@ export default class Results extends React.Component {
             // display
             value: 1
         }
+
+        this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
+        this.handleSmokeRadio = this.handleSmokeRadio.bind(this);
+        this.handleSportChange = this.handleSportChange.bind(this);
+        this.handleAlimChange = this.handleAlimChange.bind(this);
+        this.handleAlcoholChange = this.handleAlcoholChange.bind(this);
     }
 
     async componentDidMount() {
-        console.log(this.state.uid);
-        // get the responses inside the database
-        let ref = doc(db, "users", this.state.uid).withConverter(userConverter);
-        let docSnap = await getDoc(ref);
 
-        if (!docSnap.exists()) {
-            ref = doc(db, "users", "Guest").withConverter(userConverter);
-            docSnap = await getDoc(ref);
+        let userUID = "Guest";
+        const userContext = this.context;
+
+        if(userContext.currentUser !== null){
+            userUID = userContext.currentUser.uid;
         }
+        console.log("User UID :" + userUID);
+        // get the responses inside the database
+        let ref = doc(db, "users", userUID).withConverter(userConverter);
+        let docSnap = await getDoc(ref);
 
         // Convert to User object
         let user = docSnap.data();
@@ -88,7 +98,7 @@ export default class Results extends React.Component {
             age: answers[1].value,
             weight: answers[2].value,
             height: answers[3].value,
-            hypertension: answers[4].value,
+            bloodPressure: answers[4].value,
             highBloodGlucose: answers[5].value,
             chol1: answers[6].value,
             diabetes: answers[7].value,
@@ -99,6 +109,31 @@ export default class Results extends React.Component {
             alim: answers[13].value,
             sport: answers[14].value,
             alcohol: answers[15].value,
+            value: answers[1].value,
+        });
+
+        // display or not the infarct
+        if(answers[8].value == 1){
+            // hide noInfarct
+            const box = document.getElementsByClassName('algo-section-noInfarct')[0];
+            box.style.display = 'none';
+        }else {
+            // hide infarct
+            const box = document.getElementsByClassName('algo-section-infarct')[0];
+            box.style.display = 'none';
+        }
+
+        // set the avatar
+        let refAvatar = doc(db, "avatars", userUID).withConverter(avatarConverter);
+        let docSnapAvatar = await getDoc(refAvatar);
+        let avatarOBJ = docSnapAvatar.data();
+        let avatarHead = avatarOBJ.getHead();
+        let avatarFace = avatarOBJ.getFace();
+        let avatarBody = avatarOBJ.getBody();
+        this.setState({
+            head: avatarHead,
+            body: avatarBody,
+            face: avatarFace
         });
 
         this.onClick();
@@ -127,11 +162,7 @@ export default class Results extends React.Component {
             diabetes: this.state.diabetes,
             infarct: this.state.infarct,
             chol1: this.state.chol1,
-
             hdl: this.state.chol1,
-            chol2 : this.state.chol1,
-            eGRF : this.state.eGRF,
-            hsCRP : this.state.hsCRP
         });
 
         // noInfarct
@@ -141,12 +172,13 @@ export default class Results extends React.Component {
             smoke: this.state.smoke,
             bloodPressure: this.state.bloodPressure,
             chol: this.state.chol1,
-            hdl: this.state.hdl,
+            hdl: this.state.chol1,
             afinf: this.state.afinf,
         });
         this.noInfarctAlgo.current.finalResult();
 
         // cancer
+        console.log("state before cancer + " + this.state.alim)
         this.cancerAlgo.current.setState({
             afcancer : this.state.afcancer,
             smoke: this.state.smoke,
@@ -155,26 +187,54 @@ export default class Results extends React.Component {
             sport: this.state.sport,
             alcohol: this.state.alcohol,
             alim: this.state.alim,
-        });
-        this.cancerAlgo.current.getCancerRisk();
+        }, () => this.cancerAlgo.current.getCancerRisk())
     }
 
     increment() {
         this.setState(prevState => {
-            return {value: prevState.value + 1}
-        })
+            return {value: prevState.value < 70? prevState.value+1 : 70,
+                age: prevState.value < 70? prevState.value+1 : 70}
+        });
+    }
+
+    componentDidUpdate() {
+        this.onClick();
     }
 
     decrement() {
         this.setState(prevState => {
-            return {value: prevState.value > 0? --prevState.value : 0}
-        })
+            return {value: prevState.value > 20? prevState.value-1 : 20,
+                age: prevState.value > 20? prevState.value-1 : 20}
+        });
     }
 
+    handleSmokeRadio(event) {
+        this.setState({
+            smoke: event.target.value
+        });
+    }
 
+    handleSportChange(event) {
+        this.setState({
+            sport: event.target.value
+        });
+    }
+
+    handleAlimChange(event) {
+        this.setState({
+            alim: event.target.value
+        });
+    }
+
+    handleAlcoholChange(event) {
+        this.setState({
+            alcohol: event.target.value
+        });
+    }
 
 render()
 {
+
     return (
         <div className="results-page">
             <div className={"top-section"}>
@@ -182,6 +242,29 @@ render()
                     <div className={"result-avatar"}>
                         {/*avatar goes here*/}
                         Avatar
+                        <div className={"avatar"}>
+                            {FaceImageData.map( (face,index) => {
+                                return (
+                                    <div>
+                                        { index === this.state.face && <img className={"face"} src={face.image} alt="images" />}
+                                    </div>
+                                )
+                            })}
+                            {HeadImageData.map( (head,index) => {
+                                return (
+                                    <div>
+                                        { index === this.state.head && <img className={"head"} src={head.image} alt="images" />}
+                                    </div>
+                                )
+                            })}
+                            {BodyImageData.map( (body,index) => {
+                                return (
+                                    <div>
+                                        { index === this.state.body && <img className={"body"} src={body.image} alt="images" />}
+                                    </div>
+                                )
+                            })}
+                        </div>
                         <p>{this.state.age}</p>
                     </div>
                     <div className={"result-avatar-description"}>
@@ -210,25 +293,6 @@ render()
                     </div>
 
                     <div className={"algo-section"}>
-                        {/*Infarct*/}
-                        <div className={"algo-description"}>
-                            <div className={"algo-description-text"}>
-                                <h2>Infarct</h2>
-                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
-                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
-                                    (Bando na bando)</p>
-                            </div>
-                            <div className={"algo-description-graph"}>
-                                <InfarctAlgorithm ref={this.infarctAlgo}/>
-                            </div>
-                        </div>
-                        <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
-                        </div>
-                    </div>
-
-                    <div className={"algo-section"}>
                         {/*Cancer*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
@@ -247,7 +311,27 @@ render()
                         </div>
                     </div>
 
-                    <div className={"algo-section"}>
+
+                    <div className={"algo-section-infarct"}>
+                        {/*Infarct*/}
+                        <div className={"algo-description"}>
+                            <div className={"algo-description-text"}>
+                                <h2>Infarct</h2>
+                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
+                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
+                                    (Bando na bando)</p>
+                            </div>
+                            <div className={"algo-description-graph"}>
+                                <InfarctAlgorithm ref={this.infarctAlgo}/>
+                            </div>
+                        </div>
+                        <div className={"algo-details-link"}>
+                            Details
+                            {/*link to bottom page*/}
+                        </div>
+                    </div>
+
+                    <div className={"algo-section-noInfarct"}>
                         {/*No Infarctus*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
@@ -269,39 +353,56 @@ render()
                 <div className={"bottom-section"}>
                     <div className="result-title">Parameters that can be modified :</div>
                     <div className="result-question">Weight value in kg:
-                        <input type="number" id="weight" name="Weight:" min="50" max="180"/>
+                        <div className="quantity-input">
+                            <button className="quantity-input__modifier quantity-input__modifier--left" onClick={this.decrement}>
+                                &mdash;
+                            </button>
+                            <input className="quantity-input__screen" type="text" value={this.state.value} readOnly/>
+                            <button className="quantity-input__modifier quantity-input__modifier--right" onClick={this.increment}>
+                                &#xff0b;
+                            </button>
+                        </div>
                     </div>
                     <div className="result-question">Do you smoke ?
-                        <input type="radio" id="smokeNo" value="0"/>
+                        <input type="radio" id="smokeNo" value={0} checked={this.state.smoke == 0} onChange={this.handleSmokeRadio}/>
                         <label htmlFor="smokeNo">No</label>
-                        <input type="radio" id="smokeYes" value="1"/>
+                        <input type="radio" id="smokeYes" value={1} checked={this.state.smoke == 1} onChange={this.handleSmokeRadio}/>
                         <label htmlFor="smokeYes">Yes</label>
                     </div>
                     <div className="result-question">Physical Activity
-                        <input type="radio" id="physical1" value="0"/>
+                        <input type="radio" id="physical1" value={0} checked={this.state.sport == 0} onChange={this.handleSportChange}/>
                         <label htmlFor="physical1">I don't do any</label>
-                        <input type="radio" id="physical2" value="1"/>
+                        <input type="radio" id="physical2" value={1} checked={this.state.sport == 1} onChange={this.handleSportChange}/>
                         <label htmlFor="physical2">30 minutes, 2-3 days a week</label>
-                        <input type="radio" id="physical3" value="2"/>
+                        <input type="radio" id="physical3" value={2} checked={this.state.sport == 2} onChange={this.handleSportChange}/>
                         <label htmlFor="physical3">30 minutes, 5 days a week</label>
-                        <input type="radio" id="physical4" value="3"/>
+                        <input type="radio" id="physical4" value={3} checked={this.state.sport == 3} onChange={this.handleSportChange}/>
                         <label htmlFor="physical4">More than 2 hours per week</label>
                     </div>
-                    <div className="result-question">Healthy Food</div>
-                    <div className="result-question">Alcohol</div>
+                    <div className="result-question">Healthy Food
+                        <input type="radio" id="healthy1" value={0} checked={this.state.alim == 0} onChange={this.handleAlimChange}/>
+                        <label htmlFor="healthy1">Never</label>
+                        <input type="radio" id="healthy2" value={1} checked={this.state.alim == 1} onChange={this.handleAlimChange}/>
+                        <label htmlFor="healthy2">Times to times</label>
+                        <input type="radio" id="healthy3" value={2} checked={this.state.alim == 2} onChange={this.handleAlimChange}/>
+                        <label htmlFor="healthy3">Frequently</label>
+                        <input type="radio" id="healthy4" value={3} checked={this.state.alim == 3} onChange={this.handleAlimChange}/>
+                        <label htmlFor="healthy4">Always</label>
+                    </div>
+                    <div className="result-question">Alcohol
+                        <input type="radio" id="alcohol1" value={0} checked={this.state.alcohol == 0} onChange={this.handleAlcoholChange}/>
+                        <label htmlFor="alcohol1">Every day</label>
+                        <input type="radio" id="alcohol2" value={1} checked={this.state.alcohol == 1} onChange={this.handleAlcoholChange}/>
+                        <label htmlFor="alcohol2">3 to 6 days a week</label>
+                        <input type="radio" id="alcohol3" value={2} checked={this.state.alcohol == 2} onChange={this.handleAlcoholChange}/>
+                        <label htmlFor="alcohol3">1 to 2 days a week</label>
+                        <input type="radio" id="alcohol4" value={3} checked={this.state.alcohol == 3} onChange={this.handleAlcoholChange}/>
+                        <label htmlFor="alcohol4">less than a day a week</label>
+                        <input type="radio" id="alcohol5" value={4} checked={this.state.alcohol == 4} onChange={this.handleAlcoholChange}/>
+                        <label htmlFor="alcohol5">I never drink alcohol</label>
+                    </div>
                 </div>
             </div>
-
-            {/*<div className="quantity-input">*/}
-            {/*    <button className="quantity-input__modifier quantity-input__modifier--left" onClick={this.decrement}>*/}
-            {/*        &mdash;*/}
-            {/*    </button>*/}
-            {/*    <input className="quantity-input__screen" type="text" value={this.state.value} readOnly/>*/}
-            {/*    <button className="quantity-input__modifier quantity-input__modifier--right" onClick={this.increment}>*/}
-            {/*        &#xff0b;*/}
-            {/*    </button>*/}
-            {/*</div>*/}
-            <button onClick={this.onClick}>refresh</button>
         </div>
     )
 }

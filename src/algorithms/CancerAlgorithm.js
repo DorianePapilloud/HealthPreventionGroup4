@@ -31,19 +31,6 @@ export class CancerAlgorithm extends React.Component {
         }
     }
 
-    getAlimScore() {
-        switch(this.state.alim){
-            case(0): return 3;
-                break;
-            case(1): return 2;
-                break;
-            case(2): return 1;
-                break;
-            case(3): return 0;
-                break;
-        }
-    }
-
     getSportScore() {
         switch(this.state.sport){
             case(0): return 3;
@@ -99,7 +86,19 @@ export class CancerAlgorithm extends React.Component {
 
 
     getAlimPercent() {
-        let score = this.getAlimScore();
+        let score = -1;
+        console.log("Alim state : " + this.state.alim);
+        if (this.state.alim == 1) {
+            score = 2 ;
+        }else if (this.state.alim == 0) {
+            score = 3 ;
+        }else if (this.state.alim == 2) {
+            score = 1 ;
+        }else if (this.state.alim == 3) {
+            score = 0 ;
+        }else {
+            console.log("error at getAlimPercent")
+        }
         let percent = (((score/3)*0.5)/4)*100;
         return percent;
     }
@@ -109,7 +108,7 @@ export class CancerAlgorithm extends React.Component {
     getCancerRisk() {
         let risk = Math.round(this.getAfCancerPercent() + this.getSmokePercent() + this.getBMIPercent() +
             this.getSportPercent() + this.getAlcoholPercent() + this.getAlimPercent() + 9);
-        return risk;
+        return Math.round(risk);
     }
 
     //test

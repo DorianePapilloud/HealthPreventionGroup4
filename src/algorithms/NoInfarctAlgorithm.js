@@ -25,27 +25,42 @@ export class NoInfarctAlgorithm extends React.Component {
     }
 
     getValueForBloodPressure() {
-        let valueBloodPressure = (this.state.bloodPressure - 120) / 1;
+        let valueBloodPressure = 0;
+        if(this.state.bloodPressure == 0){
+            valueBloodPressure = (80 - 120) / 20;
+        }else {
+            valueBloodPressure = (200 - 120) / 20;
+        }
         return valueBloodPressure;
     }
 
     getValueForCHOL() {
-        let valueCHOL = (this.state.chol - 6) / 1;
+        let valueCHOL = 0;
+        if(this.state.chol == 0){
+            valueCHOL = (2.5 - 6) / 1;
+        }else {
+            valueCHOL = (8 - 6) / 1;
+        }
         return valueCHOL;
     }
 
     getValueForHDL() {
-        let valueHDL = (this.state.hdl - 1.3) / 0.5;
+        let valueHDL = 0;
+        if(this.state.hdl == 0){
+            valueHDL = (0.6 - 1.3) / 0.5;
+        }else {
+            valueHDL = (2.5 - 1.3) / 0.5;
+        }
         return valueHDL;
     }
 
     getValueAgeSmoke() {
-        let valueAgeSmoke = (this.getValueForAge()) * this.state.smoke
+        let valueAgeSmoke = this.getValueForAge() * this.state.smoke;
         return valueAgeSmoke;
    }
 
     getValueAgeBloodPressure() {
-        let valueAgeBloodPressure = (this.getValueForAge() * (this.getValueForBloodPressure()))
+        let valueAgeBloodPressure = (this.getValueForAge() * this.getValueForBloodPressure())
         return valueAgeBloodPressure;
     }
 
@@ -81,10 +96,10 @@ export class NoInfarctAlgorithm extends React.Component {
 
     resultBloodPressure() {
         let resultBloodPressure;
-        if (this.state.gender ===1) {
-            resultBloodPressure = this.getValueAgeBloodPressure() * this.coeffMan[2];
+        if (this.state.gender === 1) {
+            resultBloodPressure = this.getValueForBloodPressure() * this.coeffMan[2];
         } else {
-            resultBloodPressure = this.getValueAgeBloodPressure() * this.coeffWoman[2];
+            resultBloodPressure = this.getValueForBloodPressure() * this.coeffWoman[2];
         }
         return resultBloodPressure;
     }
@@ -154,7 +169,6 @@ export class NoInfarctAlgorithm extends React.Component {
         sum = this.resultAge() + this.resultSmoke() + this.resultBloodPressure()+ this.resultCHOL() + this.resultHDL() +
             +this.resultAgeSmoke() + this.resultAgeBloodPressure() + this.resultAgeCHOL()
             + this.resultAgeHDL();
-
         return sum;
     }
 
@@ -165,13 +179,12 @@ export class NoInfarctAlgorithm extends React.Component {
         if (this.state.gender === 1) {
             formule =  (1-Math.pow((0.9605), Math.exp(this.sum())));
             finalRisk = 1 - Math.exp(-Math.exp(-0.5699 + 0.7476 * Math.log(-Math.log(1 - formule))));
-
         } else {
             formule =  (1 - Math.pow((0.9776), Math.exp(this.sum())));
+            formule*=100;
             finalRisk = 1 - Math.exp(-Math.exp(-0.738 + 0.7019 * Math.log(-Math.log(1 - formule))));
         }
-
-        return finalRisk * 100;
+        return finalRisk;
     }
 
     correctionAFINF() {
@@ -186,7 +199,7 @@ export class NoInfarctAlgorithm extends React.Component {
 
     finalResult() {
         let finalResult = this.finalRisk() * this.correctionAFINF()
-        return finalResult;
+        return Math.round(finalResult);
     }
 
     render() {

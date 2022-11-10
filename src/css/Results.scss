@@ -1,26 +1,50 @@
 $block: '.quantity-input';
 $border: 0 solid #dbdbdb;
-$border-radius: 3px;
 $color--primary: #f3f3f3;
 $modifier--text-color: #888;
 
 .top-section {
   margin-bottom: 50%;
-  background-color: grey;
 }
 
 .avatar-section {
   float: left;
-  width: 30%;
+  width: 97%;
   margin: 20px;
-  padding-bottom: 616px;
+  text-align: center;
+  padding-bottom: 300px;
   border-radius: 10px;
-  background-color: deeppink;
+  background-color: #f3f3f3;
 }
 
+.avatar {
+  width: 30%;
+}
+
+.head {
+  position: absolute;
+  z-index: 1;
+  left:0;
+  right: 0;
+  margin: auto;
+}
+.face {
+  position: absolute;
+  left:0;
+  right:0;
+  z-index: 2;
+  margin: auto;
+}
+.body {
+  position: absolute;
+  left:0;
+  right:0;
+  z-index: 3;
+  margin: auto;
+}
 .algo-details-link {
   border-radius: 10px;
-  background-color: greenyellow;
+  background-color: #bebebe;
   margin-left: 1%;
   float: left;
   padding-bottom: 115px;
@@ -32,21 +56,20 @@ $modifier--text-color: #888;
   float: left;
   margin-top: 10px;
   margin-left: 20px;
-  background-color: orange;
+  background-color: #ffffff;
   width: 75%;
 }
 
 .algo-description-text h2{
   font-size: 25px;
   text-align: left;
-  background-color: yellow;
+  background-color: #ffffff;
 }
 
 .algo-description-text p{
-
   font-size: 17px;
   text-align: left;
-  background-color: yellow;
+  background-color: #ffffff;
 }
 
 .algo-description-graph {
@@ -55,42 +78,39 @@ $modifier--text-color: #888;
 }
 
 .algo {
-  float: right;
-  width: 66%;
+  float: left;
+  width: 100%;
+  margin-left: 20px;
   margin-top: 20px;
 }
 
-.algo-section {
+.algo-section, .algo-section-infarct, .algo-section-noInfarct{
   margin-bottom: 16%;
 }
 
 
 .algo-description{
-  background-color: blue;
+  background-color: #ffffff;
   float:left;
   margin-bottom: 20px;
   border-radius: 10px;
-  width: 80%;
+  width: 87.9%;
 }
 
 
 .results-page {
-  background-color: black;
   width: 100%;
-}
-
-.result-title {
-  background-color: black;
+  color: black;
+  background-color: #00bcb4;
 }
 
 .result-question {
-  background-color: blue;
+  background-color: #ffffff;
   text-align: left;
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
 }
-
 
 
 //Percentage circle graph
@@ -100,9 +120,6 @@ $modifier--text-color: #888;
   justify-content: center;
   align-items: center;
 
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  border-radius: $border-radius;
-
   &:focus {
     background: red;
   }
@@ -121,7 +138,6 @@ $modifier--text-color: #888;
   color: $modifier--text-color;
   border: $border;
   text-align: center;
-  text-shadow: 0 1px 0 rgba(#fff, .6);
 
   cursor: pointer;
 
@@ -130,20 +146,11 @@ $modifier--text-color: #888;
     color: darken($modifier--text-color, 20%)
   }
 
-  &--left {
-    border-radius: $border-radius 0 0 $border-radius;
-  }
-
-  &--right {
-    border-radius: 0 $border-radius $border-radius 0;
-  }
 }
 #{$block}__screen {
   width: 4rem;
   padding: .7rem;
   font-size: 1.5rem;
-
-  border: 0;
   border-top: $border;
   border-bottom: $border;
   text-align: center;
@@ -153,14 +160,12 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #888888;
   color: #333;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 1rem;
 }$block: '.quantity-input';
 $border: 0 solid #dbdbdb;
-$border-radius: 3px;
 $color--primary: #f3f3f3;
 $modifier--text-color: #888;
 #{$block} {
@@ -168,8 +173,6 @@ $modifier--text-color: #888;
   justify-content: center;
   align-items: center;
 
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  border-radius: $border-radius;
 
   &:focus {
     background: red;
@@ -189,21 +192,12 @@ $modifier--text-color: #888;
   color: $modifier--text-color;
   border: $border;
   text-align: center;
-  text-shadow: 0 1px 0 rgba(#fff, .6);
 
   cursor: pointer;
 
   &:hover {
     background: darken($color--primary, 10%);
     color: darken($modifier--text-color, 20%)
-  }
-
-  &--left {
-    border-radius: $border-radius 0 0 $border-radius;
-  }
-
-  &--right {
-    border-radius: 0 $border-radius $border-radius 0;
   }
 }
 #{$block}__screen {

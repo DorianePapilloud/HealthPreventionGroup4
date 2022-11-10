@@ -14,9 +14,9 @@ export class InfarctAlgorithm extends React.Component {
             infarct: props.infarct,
             chol1: props.chol1,
             hdl: props.hdl,
-            chol2 : props.chol2,
-            eGRF : props.eGRF,
-            hsCRP : props.hsCRP
+            chol2 : 0,
+            eGRF : 120,
+            hsCRP : 0.1
         }
     }
 
@@ -48,8 +48,13 @@ export class InfarctAlgorithm extends React.Component {
     }
 
     getValueForBloodPressure() {
-        let valueBloodPressure = this.state.bloodPressure * this.coeff[3];
-        return valueBloodPressure;
+        let valueBloodPressure = 0;
+        if(this.state.bloodPressure == 0){
+            valueBloodPressure = 80;
+        }else {
+            valueBloodPressure = 200;
+        }
+        return valueBloodPressure*this.coeff[3];
     }
 
     getValueForDiabetes() {
@@ -78,8 +83,13 @@ export class InfarctAlgorithm extends React.Component {
     }
 
     getValueForHDL() {
-        let valueHDL = this.state.hdl * this.coeff[7];
-        return valueHDL;
+        let valueHDL = 0;
+        if(this.state.hdl == 0){
+            valueHDL = 0.6;
+        }else {
+            valueHDL = 2.5;
+        }
+        return valueHDL*this.coeff[7];
     }
 
     getValueForCHOL2() {
@@ -109,7 +119,6 @@ export class InfarctAlgorithm extends React.Component {
     }
 
     calculateInfarctRisk() {
-
         let percentage;
         percentage = ((1-Math.pow(0.61785,Math.exp(this.calculateTotal()-2.0869)))*1000)/10;
 
@@ -117,7 +126,6 @@ export class InfarctAlgorithm extends React.Component {
     }
 
     render() {
-
         //test
         return (
             <div>

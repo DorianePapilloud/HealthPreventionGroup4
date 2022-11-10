@@ -42,7 +42,7 @@ export default function NavBar({ currentUser }) {
                     <NavCenter>
                         <NavLinks to='/'>Home</NavLinks>
                         |
-                        <NavLinks to='/'>About</NavLinks>
+                        <NavLinks to='/about'>About</NavLinks>
                         |
                         <NavLinks to='/register'>Register</NavLinks>
                     </NavCenter>

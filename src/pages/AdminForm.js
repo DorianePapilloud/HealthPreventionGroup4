@@ -103,43 +103,51 @@ function AdminForm() {
 
     return (
         <form onSubmit={onSubmitForm}>
-            <h1> Normal values Diabetes </h1>
-            <label> Age Man: <input value={normalValuesDiabetes.ageMan} name="ageMan" onChange={handleChange}/> </label>
-            <label> Age Woman: <input value={normalValuesDiabetes.ageWoman} name="ageWoman" onChange={handleChange}/> </label>
-            <label> BMI Man: <input value={normalValuesDiabetes.bmiMan} name="bmiMan" onChange={handleChange}/> </label>
-            <label> BMI Woman: <input value={normalValuesDiabetes.bmiWoman} name="bmiWoman" onChange={handleChange}/> </label>
-            <label> Additional Waist Man: <input value={normalValuesDiabetes.additionalWaistMan} name="additionalWaistMan" onChange={handleChange}/> </label>
-            <label> Additional Waist Woman: <input value={normalValuesDiabetes.additionalWaistWoman} name="additionalWaistWoman" onChange={handleChange}/> </label>
-            <label> High Blood Pressure Man: <input value={normalValuesDiabetes.highBloodPressureMan} name="highBloodPressureMan" onChange={handleChange}/> </label>
-            <label> High Blood Pressure Woman: <input value={normalValuesDiabetes.highBloodPressureWoman} name="highBloodPressureWoman" onChange={handleChange}/> </label>
-            <label> High Blood Sugar Man: <input value={normalValuesDiabetes.highBloodSugarMan} name="highBloodSugarMan" onChange={handleChange}/> </label>
-            <label> High Blood Sugar Woman: <input value={normalValuesDiabetes.highBloodSugarWoman} name="highBloodSugarWoman" onChange={handleChange}/> </label>
-            <label> Sport Man: <input value={normalValuesDiabetes.sportMan} name="sportMan" onChange={handleChange}/> </label>
-            <label> Sport Woman: <input value={normalValuesDiabetes.sportWoman} name="sportWoman" onChange={handleChange}/> </label>
-            <label> Alim Man: <input value={normalValuesDiabetes.alimMan} name="alimMan" onChange={handleChange}/> </label>
-            <label> Alim Woman: <input value={normalValuesDiabetes.alimWoman} name="alimWoman" onChange={handleChange}/> </label>
+            {/*<div className="row">*/}
+                <div className="column">
+                    <h1 className="normalValue_title"> Normal values Diabetes </h1>
+                    <label> Age Man: <input value={normalValuesDiabetes.ageMan} name="ageMan" onChange={handleChange}/> </label> <br/>
+                    <label> Age Woman: <input value={normalValuesDiabetes.ageWoman} name="ageWoman" onChange={handleChange}/> </label> <br/>
+                    <label> BMI Man: <input value={normalValuesDiabetes.bmiMan} name="bmiMan" onChange={handleChange}/> </label> <br/>
+                    <label> BMI Woman: <input value={normalValuesDiabetes.bmiWoman} name="bmiWoman" onChange={handleChange}/> </label> <br/>
+                    <label> Additional Waist Man: <input value={normalValuesDiabetes.additionalWaistMan} name="additionalWaistMan" onChange={handleChange}/> </label> <br/>
+                    <label> Additional Waist Woman: <input value={normalValuesDiabetes.additionalWaistWoman} name="additionalWaistWoman" onChange={handleChange}/> </label> <br/>
+                    <label> High Blood Pressure Man: <input value={normalValuesDiabetes.highBloodPressureMan} name="highBloodPressureMan" onChange={handleChange}/> </label> <br/>
+                    <label> High Blood Pressure Woman: <input value={normalValuesDiabetes.highBloodPressureWoman} name="highBloodPressureWoman" onChange={handleChange}/> </label> <br/>
+                    <label> High Blood Sugar Man: <input value={normalValuesDiabetes.highBloodSugarMan} name="highBloodSugarMan" onChange={handleChange}/> </label> <br/>
+                    <label> High Blood Sugar Woman: <input value={normalValuesDiabetes.highBloodSugarWoman} name="highBloodSugarWoman" onChange={handleChange}/> </label> <br/>
+                    <label> Sport Man: <input value={normalValuesDiabetes.sportMan} name="sportMan" onChange={handleChange}/> </label> <br/>
+                    <label> Sport Woman: <input value={normalValuesDiabetes.sportWoman} name="sportWoman" onChange={handleChange}/> </label> <br/>
+                    <label> Alim Man: <input value={normalValuesDiabetes.alimMan} name="alimMan" onChange={handleChange}/> </label> <br/>
+                    <label> Alim Woman: <input value={normalValuesDiabetes.alimWoman} name="alimWoman" onChange={handleChange}/> </label> <br/>
+                </div>
 
-            <h1> Normal values Infarct </h1>
-            <label> Age: <input value={normalValuesInfarct.age} name="ageInfarct" onChange={handleChange}/> </label>
-            <label> BloodPressure: <input value={normalValuesInfarct.bloodPressure} name="bloodPressureInfarct" onChange={handleChange}/> </label>
-            <label> Total CHOL mmol/l 1: <input value={normalValuesInfarct.chol1} name="chol1Infarct" onChange={handleChange}/> </label>
-            <label> Total CHOL mmil/l 2: <input value={normalValuesInfarct.chol2} name="chol2Infarct" onChange={handleChange}/> </label>
-            <label> Diabetes: <input value={normalValuesInfarct.diabetes} name="diabetesInfarct" onChange={handleChange}/> </label>
-            <label> eGRF ml/min: <input value={normalValuesInfarct.eGRF} name="eGRFInfarct" onChange={handleChange}/> </label>
-            <label> Gender: <input value={normalValuesInfarct.gender} name="genderInfarct" onChange={handleChange}/> </label>
-            <label> HDL mmol/l: <input value={normalValuesInfarct.hdl} name="hdlInfarct" onChange={handleChange}/> </label>
-            <label> HS CRP mg/l: <input value={normalValuesInfarct.hsCRP} name="hsCRPInfarct" onChange={handleChange}/> </label>
-            <label> Infarct: <input value={normalValuesInfarct.infarct} name="infarctInfarct" onChange={handleChange}/> </label>
-            <label> Smoking: <input value={normalValuesInfarct.smoke} name="smokeInfarct" onChange={handleChange}/> </label>
+                <div className="column">
+                    <h1 className="normalValue_title"> Normal values Infarct </h1>
+                    <label> Age: <input value={normalValuesInfarct.age} name="ageInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> BloodPressure: <input value={normalValuesInfarct.bloodPressure} name="bloodPressureInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> Total CHOL mmol/l 1: <input value={normalValuesInfarct.chol1} name="chol1Infarct" onChange={handleChange}/> </label> <br/>
+                    <label> Total CHOL mmil/l 2: <input value={normalValuesInfarct.chol2} name="chol2Infarct" onChange={handleChange}/> </label> <br/>
+                    <label> Diabetes: <input value={normalValuesInfarct.diabetes} name="diabetesInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> eGRF ml/min: <input value={normalValuesInfarct.eGRF} name="eGRFInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> Gender: <input value={normalValuesInfarct.gender} name="genderInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> HDL mmol/l: <input value={normalValuesInfarct.hdl} name="hdlInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> HS CRP mg/l: <input value={normalValuesInfarct.hsCRP} name="hsCRPInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> Infarct: <input value={normalValuesInfarct.infarct} name="infarctInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> Smoking: <input value={normalValuesInfarct.smoke} name="smokeInfarct" onChange={handleChange}/> </label> <br/>
+                </div>
 
-            <h1> Normal values NoInfarct </h1>
-            <label> AFINF Correction: <input value={normalValuesNoInfarct.afinf} name="afinfNoInfarct" onChange={handleChange}/> </label>
-            <label> Age: <input value={normalValuesNoInfarct.age} name="ageNoInfarct" onChange={handleChange}/> </label>
-            <label> Blood Pressure: <input value={normalValuesNoInfarct.bloodPressure} name="bloodPressureNoInfarct" onChange={handleChange}/> </label>
-            <label> CHOL mmol/l: <input value={normalValuesNoInfarct.chol} name="cholNoInfarct" onChange={handleChange}/> </label>
-            <label> HDL mmol/l: <input value={normalValuesNoInfarct.hdl} name="hdlNoInfarct" onChange={handleChange}/> </label>
-            <label> Smoking: <input value={normalValuesNoInfarct.smoke} name="smokeNoInfarct" onChange={handleChange}/> </label>
-            <input type="submit" id="save_changes" value="Save Changes"/>
+                <div className="column">
+                    <h1 className="normalValue_title"> Normal values NoInfarct </h1>
+                    <label> AFINF Correction: <input value={normalValuesNoInfarct.afinf} name="afinfNoInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> Age: <input value={normalValuesNoInfarct.age} name="ageNoInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> Blood Pressure: <input value={normalValuesNoInfarct.bloodPressure} name="bloodPressureNoInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> CHOL mmol/l: <input value={normalValuesNoInfarct.chol} name="cholNoInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> HDL mmol/l: <input value={normalValuesNoInfarct.hdl} name="hdlNoInfarct" onChange={handleChange}/> </label> <br/>
+                    <label> Smoking: <input value={normalValuesNoInfarct.smoke} name="smokeNoInfarct" onChange={handleChange}/> </label> <br/>
+                </div>
+            {/*</div>*/}
+                <input type="submit" id="save_changes" value="Save Changes"/>
         </form>
 
     )

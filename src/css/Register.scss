@@ -9,17 +9,19 @@ $font : "Corbel Light", sans-serif;
 }
 
 .elementSideBySide{
+  width: 75%;
+  margin: auto;
   display: flex;
-  margin-left: 40px;
+  justify-content: center;
 
   .dropDownList{
-    width: 44%;
+    width: 50%;
     height: 40px;
     font-size: 15px;
     color: $secondary-color;
-    position: relative;
+    //position: relative;
     text-align: center;
-    display: block;
+    //display: block;
     margin-bottom: 25px;
     margin-top: 15px;
     border-radius: 12px;

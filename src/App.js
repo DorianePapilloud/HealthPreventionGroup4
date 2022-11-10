@@ -18,6 +18,8 @@ import {NoInfarctAlgorithm} from "./algorithms/NoInfarctAlgorithm";
 import {CancerAlgorithm} from "./algorithms/CancerAlgorithm";
 import Results from "./pages/Results"
 import AdminPage from "./pages/AdminPage";
+import Error404 from "./pages/Error404";
+import About from "./pages/About";
 
 //test
 
@@ -67,6 +69,8 @@ export default function App() {
           <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />
           <Route path="/diabete" element={<DiabetesAlgorithm />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<Error404/>} />
         </Routes>
       </header>
     </div>

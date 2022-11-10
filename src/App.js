@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./initFirebase";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import Questionnaire from "./Questionnaire";
 import AvatarCreation from "./pages/AvatarCreation";
@@ -19,6 +19,8 @@ import {CancerAlgorithm} from "./algorithms/CancerAlgorithm";
 import Results from "./pages/Results"
 import AdminPage from "./pages/AdminPage";
 import UserContext from "./UserContext";
+import Error404 from "./pages/Error404";
+import About from "./pages/About";
 
 //test
 
@@ -69,6 +71,8 @@ export default function App() {
           <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />
           <Route path="/diabete" element={<DiabetesAlgorithm />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<Error404/>} />
         </Routes>
       </header>
     </div>

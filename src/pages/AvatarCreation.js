@@ -3,6 +3,7 @@ import AvatarForm from "../components/AvatarForm";
 import {db} from "../initFirebase";
 import {doc, setDoc} from "firebase/firestore";
 import {avatarInfo} from "../services/getCurrentAvatar";
+import avatarCreation from "../css/avatarCreation.module.scss"
 import UserContext from "../UserContext";
 import React from "react";
 
@@ -43,7 +44,7 @@ export default function AvatarCreation() {
             <br/>
             <AvatarForm/>
             <br/>
-            <button onClick={handleAvatarCreation}>Create</button>
+            <button id={avatarCreation.create_btn} onClick={handleAvatarCreation}>Create</button>
         </div>
     );
 }

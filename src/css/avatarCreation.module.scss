@@ -1,0 +1,55 @@
+$main-color: #4dd6b6;
+
+.main_div{
+        width: 600px;
+        height: 300px;
+    }
+
+.head {
+    position: absolute;
+    z-index: 1;
+    left:0;
+    right:0;
+    margin: auto;
+}
+
+.face {
+    position: absolute;
+    left:0;
+    right:0;
+    margin: auto;
+    z-index: 2;
+}
+
+.body {
+    position: absolute;
+    left:0;
+    right:0;
+    margin: auto;
+    z-index: 0;
+}
+
+.info {
+    font-size: 16px;
+    margin: 30px;
+}
+
+.change_buttons{
+}
+
+#create_btn{
+    width: 80%;
+    background: $main-color;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: all 0.5s ease;
+    border-radius: 12px;
+    margin-bottom: 10px;
+
+    &:hover{
+        box-shadow: 4px 3px 9px -1px gray;
+        transform: translateY(-5px);
+    }
+}

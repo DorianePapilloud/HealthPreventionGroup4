@@ -56,7 +56,7 @@ export default function Register() {
                 {(() => {
                   if (hasError) {
                     return (
-                        <div>E-mail already used !</div>
+                        <div>E-mail cannot be used !</div>
                     )
                   }
                 })()}

@@ -15,6 +15,9 @@ $modifier--text-color: #888;
   padding-bottom: 300px;
   border-radius: 10px;
   background-color: #f3f3f3;
+  
+  border-style: solid;
+  border-color: black;
 }
 
 .avatar {
@@ -44,7 +47,8 @@ $modifier--text-color: #888;
 }
 .algo-details-link {
   border-radius: 10px;
-  background-color: #bebebe;
+  color: white;
+  background-color: #000000;
   margin-left: 1%;
   float: left;
   padding-bottom: 115px;
@@ -63,13 +67,13 @@ $modifier--text-color: #888;
 .algo-description-text h2{
   font-size: 25px;
   text-align: left;
-  background-color: #ffffff;
+  background-color: #00bab2;
 }
 
 .algo-description-text p{
   font-size: 17px;
   text-align: left;
-  background-color: #ffffff;
+  background-color: #00bab2;
 }
 
 .algo-description-graph {
@@ -85,12 +89,12 @@ $modifier--text-color: #888;
 }
 
 .algo-section, .algo-section-infarct, .algo-section-noInfarct{
-  margin-bottom: 16%;
+  color: black;
 }
 
 
 .algo-description{
-  background-color: #ffffff;
+  background-color: #00bbb3;
   float:left;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -101,11 +105,12 @@ $modifier--text-color: #888;
 .results-page {
   width: 100%;
   color: black;
-  background-color: #00bcb4;
+  //background-color: #00bcb4;
 }
 
 .result-question {
-  background-color: #ffffff;
+  background-color: #00b9b1;
+  color: white;
   text-align: left;
   padding: 20px;
   margin: 20px;

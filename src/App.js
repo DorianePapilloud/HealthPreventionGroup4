@@ -7,15 +7,11 @@ import Home from "./pages/Home";
 
 import { onAuthStateChanged } from "firebase/auth";
 import {auth, db} from "./initFirebase";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import Questionnaire from "./Questionnaire";
 import AvatarCreation from "./pages/AvatarCreation";
 import NavBar from "./pages/NavBar/indexNB";
-import {DiabetesAlgorithm} from "./algorithms/DiabetesAlgorithm";
-import {InfarctAlgorithm} from "./algorithms/InfarctAlgorithm";
-import {NoInfarctAlgorithm} from "./algorithms/NoInfarctAlgorithm";
-import {CancerAlgorithm} from "./algorithms/CancerAlgorithm";
 import Results from "./pages/Results"
 import AdminPage from "./pages/AdminPage";
 import UserContext from "./UserContext";
@@ -36,17 +32,43 @@ export default function App() {
 
   /* Watch for authentication state changes */
   useEffect(() => {
+    const getObject = async () => {
+      let userUID = "Guest";
+      if (currentUser !== null) {
+        userUID = currentUser.uid;
+      }
+      else{
+        setCurrentAdmin(false);
+      }
+      const ref = doc(db, "users", userUID).withConverter(userConverter);
+      const docSnap = await getDoc(ref);
+
+      if (docSnap.exists()) {
+        // Convert to User object
+        const user = docSnap.data();
+        if(user.role === "Admin"){
+          setCurrentAdmin(true);
+        }else{
+          setCurrentAdmin(false);
+        }
+      } else {
+
+        console.log("No user found!");
+      }
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log("User is", user);
       setCurrentUser(user);
+    });
+
+    getObject().then(() => {
     });
     // Unsubscribe from changes when App is unmounted
     return () => {
       unsubscribe();
     };
-  }, []);
-
-
+  },[currentUser] );
 
   if (currentUser === undefined) {
     return (
@@ -73,11 +95,11 @@ export default function App() {
           <Route path="/avatar" element={<AvatarCreation />} />
           <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/results" element={<Results />} />
-          <Route path="/cancer" element={<CancerAlgorithm />} />
-          <Route path="/infarct" element={<InfarctAlgorithm />} />
-          <Route path="/noinfarct" element={<NoInfarctAlgorithm />} />
-          <Route path="/diabete" element={<DiabetesAlgorithm />} />
-          <Route path="/admin" element={<AdminPage />} />
+          {!currentAdmin ? (
+              <Route path="/error404" element={<AdminPage />} />
+          ) : (
+              <Route path="/admin" element={<AdminPage />}  />
+          )}
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Error404/>} />
         </Routes>

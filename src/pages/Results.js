@@ -278,9 +278,7 @@ render()
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
                                 <h2>Diabetes</h2>
-                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
-                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
-                                    (Bando na bando)</p>
+                                <p>Losing weight, eating healthy food, and being active can really help reducing your diabetes risk.</p>
                             </div>
                             <div className={"algo-description-graph"}>
                                 <DiabetesAlgorithm ref={this.diabetAlgo}/>
@@ -297,9 +295,7 @@ render()
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
                                 <h2>Cancer</h2>
-                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
-                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
-                                    (Bando na bando)</p>
+                                <p>You can reduce your risk of getting cancer by keeping a healthy weight, avoiding tobacco, limiting the amount of alcohol you drink, and protecting your skin.</p>
                             </div>
                             <div className={"algo-description-graph"}>
                                 <CancerAlgorithm ref={this.cancerAlgo}/>
@@ -317,9 +313,7 @@ render()
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
                                 <h2>Infarct</h2>
-                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
-                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
-                                    (Bando na bando)</p>
+                                <p>You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco, limiting the amount of alcohol you drink, being physically active, keeping your stress level low.</p>
                             </div>
                             <div className={"algo-description-graph"}>
                                 <InfarctAlgorithm ref={this.infarctAlgo}/>
@@ -336,9 +330,7 @@ render()
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
                                 <h2>No Infarct</h2>
-                                <p>Lunettes teintées Phares xénon, vitres teintées (Bando bando) J'partais au charbon Pied d'biche, portes blindées J'ai encore la dalle, j'suis pas gavé
-                                    Charbonne toujours les mains gantées Charbonne toujours les mains gantées J'volais le goûter des enfants gâtés Elle prend par l'cul Elle veut pas s'faire éclater le clito
-                                    (Bando na bando)</p>
+                                <p>You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco, limiting the amount of alcohol you drink, being physically active, keeping your stress level low.</p>
                             </div>
                             <div className={"algo-description-graph"}>
                                 <NoInfarctAlgorithm ref={this.noInfarctAlgo}/>

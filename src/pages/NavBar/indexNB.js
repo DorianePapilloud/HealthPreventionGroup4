@@ -11,9 +11,14 @@ import {useNavigate} from "react-router-dom";
 export default function NavBar() {
 
     const [users, setUsers] = useState([]) ;
+    const [guest, setGuest] = useState(true);
     const userContext = React.useContext(UserContext);
     const currentUser = userContext.currentUser;
-    const [role, setRole] = useState("");
+    const navigate = useNavigate();
+
+    function navResults(){
+        navigate("/results");
+    }
 
     useEffect( () => {
         let userUID = "Guest";
@@ -22,12 +27,15 @@ export default function NavBar() {
         }
         else{
             userContext.setCurrentAdmin(false);
+            setGuest(true);
         }
-
 
         const getObject = async () => {
             const ref = doc(db, "users", userUID).withConverter(userConverter);
             const docSnap = await getDoc(ref);
+            if(userUID !== "Guest"){
+                setGuest(false);
+            }
 
             if (docSnap.exists()) {
                 // Convert to User object
@@ -42,8 +50,6 @@ export default function NavBar() {
                 console.log("No user found!");
             }
         }
-
-        console.log(role);
 
         getObject().then(() => {
         });
@@ -74,7 +80,12 @@ export default function NavBar() {
                         )}
                     </NavCenter>
                     <NavRight>
-                        <User src={userImg}></User>
+                        {guest ? (
+                            <User src={userImg} ></User>
+                        ) : (
+                            <User src={userImg} onClick={navResults}></User>
+                        )}
+
                         {users.map((user) => {
                             return (
                                 <div>

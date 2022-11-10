@@ -27,7 +27,7 @@ export default function AvatarCreation() {
 
         try {
             // create avatar in DB with the data set
-            await updateDoc(doc(db, "avatars", userUID), {
+            await setDoc(doc(db, "avatars", userUID), {
                 face: face,
                 body: body,
                 head: head,

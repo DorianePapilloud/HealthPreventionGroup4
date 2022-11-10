@@ -18,31 +18,31 @@ export default function AvatarForm() {
         const headLength = HeadImageData.length;
         function nextHead() {
             setCurrentHead( currentHead === headLength - 1 ? 0 : currentHead + 1 );
-            userContext.setCurrentHead(currentHead);
+            userContext.setCurrentHead(currentHead === headLength - 1 ? 0 : currentHead + 1);
         }
         function prevHead() {
             setCurrentHead( currentHead === 0 ? headLength - 1 : currentHead - 1 );
-            userContext.setCurrentHead(currentHead);
+            userContext.setCurrentHead(currentHead === 0 ? headLength - 1 : currentHead - 1);
         }
 
         const bodyLength = BodyImageData.length;
         function nextBody() {
             setCurrentBody( currentBody === bodyLength - 1 ? 0 : currentBody + 1 );
-            userContext.setCurrentBody(currentBody);
+            userContext.setCurrentBody(currentBody === bodyLength - 1 ? 0 : currentBody + 1);
         }
         function prevBody() {
             setCurrentBody( currentBody === 0 ? bodyLength - 1 : currentBody - 1 );
-            userContext.setCurrentBody(currentBody);
+            userContext.setCurrentBody( currentBody === 0 ? bodyLength - 1 : currentBody - 1 );
         }
 
         const faceLength = FaceImageData.length;
         function nextFace() {
             setCurrentFace( currentFace === faceLength - 1 ? 0 : currentFace + 1 );
-            userContext.setCurrentFace(currentFace);
+            userContext.setCurrentFace(currentFace === faceLength - 1 ? 0 : currentFace + 1 );
         }
         function prevFace() {
             setCurrentFace( currentFace === 0 ? faceLength - 1 : currentFace - 1 );
-            userContext.setCurrentFace(currentFace);
+            userContext.setCurrentFace(currentFace === 0 ? faceLength - 1 : currentFace - 1);
         }
         return (
             <>

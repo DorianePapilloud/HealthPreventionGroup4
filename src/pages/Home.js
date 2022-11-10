@@ -43,31 +43,31 @@ export default function Home() {
   //         getObject().then(() => {
   //             setSpeech(base + uName + " " + uSurname);
   //         });
-      // get all docs
-      // const userCollectionRef = collection(db, "users")
-      // const getUsers = async () => {
-      //
-      //     const data = await getDocs(userCollectionRef);
-      //     setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-      // };
-      //getUsers();
+  // get all docs
+  // const userCollectionRef = collection(db, "users")
+  // const getUsers = async () => {
+  //
+  //     const data = await getDocs(userCollectionRef);
+  //     setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+  // };
+  //getUsers();
   // }, [currentUser]);
 
   return (
-    <div>
+      <div>
         <Header/>
-    </div> )
-        {/*<p>{speech}</p>*/}
-      {/*<h1></h1>*/}
-      {/*  {users.map((user) => {*/}
-      {/*      return (*/}
-      {/*          <div>*/}
-      {/*              <h1>Name: {user.name}</h1>*/}
-      {/*              <p>Surname: {user.surname}</p>*/}
-      {/*          </div>*/}
-      {/*      );*/}
-      {/*  })}*/}
-      {/*{!currentUser ? (*/}
+      </div> )
+  {/*<p>{speech}</p>*/}
+  {/*<h1></h1>*/}
+  {/*  {users.map((user) => {*/}
+  {/*      return (*/}
+  {/*          <div>*/}
+  {/*              <h1>Name: {user.name}</h1>*/}
+  {/*              <p>Surname: {user.surname}</p>*/}
+  {/*          </div>*/}
+  {/*      );*/}
+  {/*  })}*/}
+  {/*{!currentUser ? (*/}
   {/*      <>*/}
   {/*        <Link to="/register" className="App-link">*/}
   {/*          Register*/}

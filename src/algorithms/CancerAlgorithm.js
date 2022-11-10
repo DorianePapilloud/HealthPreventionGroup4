@@ -1,4 +1,6 @@
 import React from "react";
+import "../css/CircularProgressBar.scss"
+import {CircularProgressBar} from "../components/CircularProgressBar";
 
 export class CancerAlgorithm extends React.Component {
     constructor(props) {
@@ -11,9 +13,6 @@ export class CancerAlgorithm extends React.Component {
             sport: props.sport,
             alcohol: props.alcohol,
             alim: props.alim,
-            alcScore: props.alcScore,
-            sportScore: props.sportScore,
-            alimScore: props.alimScore
         }
     }
 
@@ -117,13 +116,10 @@ export class CancerAlgorithm extends React.Component {
     render() {
         return (
             <div>
-                <p>AfCancer: {this.getAfCancerPercent()}%</p>
-                <p>Smoke: {this.getSmokePercent()}%</p>
-                <p>BMI: {this.getBMIPercent()}%</p>
-                <p>Sport: {this.getSportPercent()}%</p>
-                <p>Alcohol: {this.getAlcoholPercent()}%</p>
-                <p>Alim: {this.getAlimPercent()}%</p>
-                <p><strong>Risk: {this.getCancerRisk()}%</strong></p>
+                <CircularProgressBar
+                    strokeWidth="5"
+                    sqSize="100"
+                    percentage={this.getCancerRisk()}/>
             </div>
         )
     }

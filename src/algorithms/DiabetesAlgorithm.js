@@ -1,5 +1,6 @@
 
 import React from "react";
+import {CircularProgressBar} from "../components/CircularProgressBar";
 
 export class DiabetesAlgorithm extends React.Component {
 
@@ -101,13 +102,12 @@ export class DiabetesAlgorithm extends React.Component {
         //test
         return (
             <div>
-                <p>Age: {this.getPointsForAge()}</p>
-                <p>BMI: {this.getPointsForBMI()}</p>
-                <p>Hypertension: {this.getPointsForHypertension()}</p>
-                <p>HighBloodGlucose: {this.getPointsForHighBloodGlucose()}</p>
-                <p>Sport: {this.getPointsForSport()}</p>
-                <p>Alim: {this.getPointsForAlim()}</p>
-                <p><strong>Total: {this.calculateDiabetesRisk()}%</strong></p>
+                <div>
+                    <CircularProgressBar
+                        strokeWidth="5"
+                        sqSize="100"
+                        percentage={this.calculateDiabetesRisk()}/>
+                </div>
             </div>
         )
     }

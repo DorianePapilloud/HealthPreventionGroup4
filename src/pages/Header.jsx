@@ -1,5 +1,7 @@
 import "../css/Header.scss"
 import headerImg from "../images/loginRegister/Wave.jpg"
+import {NavLinks} from "./NavBar/NavBar";
+import React from "react";
 
 
 export default function Header(){
@@ -11,7 +13,7 @@ export default function Header(){
             </div>
             <div className="img_container">
                 <img className="header_img" src={headerImg}/>
-                <button className="start_button"><span>Start questionnaire</span></button>
+                <NavLinks to='/questionnaire'><button className="start_button"><span>Start questionnaire</span></button></NavLinks>
             </div>
 
         </div>

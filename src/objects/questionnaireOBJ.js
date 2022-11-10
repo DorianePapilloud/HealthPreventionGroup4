@@ -1,25 +1,15 @@
 class QuestionnaireOBJ {
-
     constructor(answers, date) {
-        this.answers = answers;
-        this.date = date;
+        this.answers=answers;
+        this.date=date;
     }
 
-
-    get answers() {
+    getAnswers() {
         return this.answers;
     }
 
-    set answers(value) {
-        this.answers = value;
-    }
-
-    get date() {
+    getDate() {
         return this.date;
-    }
-
-    set date(value) {
-        this.date = value;
     }
 }
 

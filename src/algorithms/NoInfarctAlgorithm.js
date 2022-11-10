@@ -1,5 +1,6 @@
 
 import React from "react";
+import {CircularProgressBar} from "../components/CircularProgressBar";
 
 export class NoInfarctAlgorithm extends React.Component {
     constructor(props) {
@@ -193,17 +194,10 @@ export class NoInfarctAlgorithm extends React.Component {
         //test
         return (
             <div>
-                <p>Age: {this.resultAge()}</p>
-                <p>Systolic: {this.resultBloodPressure()}</p>
-                <p>CHOL: {this.resultCHOL()}</p>
-                <p>HDL: {this.resultHDL()}</p>
-                <p>Age * Smoke: {this.resultAgeSmoke()}</p>
-                <p>Age * Systolic: {this.resultAgeBloodPressure()} </p>
-                <p>Age * CHOL: {this.resultAgeCHOL()}</p>
-                <p>Age * HDL: {this.resultAgeHDL()}</p>
-                <p>Sum: {this.sum()} </p>
-                <p>Final risk: {this.finalRisk()}%</p>
-                <p><strong>Final result: {this.finalResult()}%</strong></p>
+                <CircularProgressBar
+                    strokeWidth="5"
+                    sqSize="100"
+                    percentage={this.finalResult()}/>
             </div>
         )
     }

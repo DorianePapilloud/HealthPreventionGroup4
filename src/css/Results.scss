@@ -1,0 +1,269 @@
+$block: '.quantity-input';
+$border: 0 solid #dbdbdb;
+$border-radius: 3px;
+$color--primary: #f3f3f3;
+$modifier--text-color: #888;
+
+.top-section {
+  margin-bottom: 50%;
+  background-color: grey;
+}
+
+.avatar-section {
+  float: left;
+  width: 30%;
+  margin: 20px;
+  padding-bottom: 616px;
+  border-radius: 10px;
+  background-color: deeppink;
+}
+
+.algo-details-link {
+  border-radius: 10px;
+  background-color: greenyellow;
+  margin-left: 1%;
+  float: left;
+  padding-bottom: 115px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.algo-description-text {
+  float: left;
+  margin-top: 10px;
+  margin-left: 20px;
+  background-color: orange;
+  width: 75%;
+}
+
+.algo-description-text h2{
+  font-size: 25px;
+  text-align: left;
+  background-color: yellow;
+}
+
+.algo-description-text p{
+
+  font-size: 17px;
+  text-align: left;
+  background-color: yellow;
+}
+
+.algo-description-graph {
+  float: right;
+  margin: 20px;
+}
+
+.algo {
+  float: right;
+  width: 66%;
+  margin-top: 20px;
+}
+
+.algo-section {
+  margin-bottom: 16%;
+}
+
+
+.algo-description{
+  background-color: blue;
+  float:left;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 80%;
+}
+
+
+.results-page {
+  background-color: black;
+  width: 100%;
+}
+
+.result-title {
+  background-color: black;
+}
+
+.result-question {
+  background-color: blue;
+  text-align: left;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+
+
+//Percentage circle graph
+
+#{$block} {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: $border-radius;
+
+  &:focus {
+    background: red;
+  }
+}
+#{$block}__modifier,
+#{$block}__screen {
+  user-select: none;
+  outline: none;
+}
+#{$block}__modifier {
+  padding: .7rem;
+  width: 3rem;
+  font-size: 1.5rem;
+
+  background: $color--primary;
+  color: $modifier--text-color;
+  border: $border;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(#fff, .6);
+
+  cursor: pointer;
+
+  &:hover {
+    background: darken($color--primary, 10%);
+    color: darken($modifier--text-color, 20%)
+  }
+
+  &--left {
+    border-radius: $border-radius 0 0 $border-radius;
+  }
+
+  &--right {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
+}
+#{$block}__screen {
+  width: 4rem;
+  padding: .7rem;
+  font-size: 1.5rem;
+
+  border: 0;
+  border-top: $border;
+  border-bottom: $border;
+  text-align: center;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #888888;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+}$block: '.quantity-input';
+$border: 0 solid #dbdbdb;
+$border-radius: 3px;
+$color--primary: #f3f3f3;
+$modifier--text-color: #888;
+#{$block} {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: $border-radius;
+
+  &:focus {
+    background: red;
+  }
+}
+#{$block}__modifier,
+#{$block}__screen {
+  user-select: none;
+  outline: none;
+}
+#{$block}__modifier {
+  padding: .7rem;
+  width: 3rem;
+  font-size: 1.5rem;
+
+  background: $color--primary;
+  color: $modifier--text-color;
+  border: $border;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(#fff, .6);
+
+  cursor: pointer;
+
+  &:hover {
+    background: darken($color--primary, 10%);
+    color: darken($modifier--text-color, 20%)
+  }
+
+  &--left {
+    border-radius: $border-radius 0 0 $border-radius;
+  }
+
+  &--right {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
+}
+#{$block}__screen {
+  width: 4rem;
+  padding: .7rem;
+  font-size: 1.5rem;
+
+  border: 0;
+  border-top: $border;
+  border-bottom: $border;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1420px) {
+  .result-question {
+    background-color: cornflowerblue;
+  }
+  .algo-section {
+    margin-right: 20px;
+    width: 98%;
+  }
+  .algo-description {
+    width: 100%;
+    margin-right: 0%;
+    margin-bottom: 0%;
+  }
+  .algo-details-link {
+    width: 100%;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-bottom: 2%;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  .avatar-section {
+    padding-bottom: 741px;
+  }
+  .top-section {
+    margin-bottom: 70%;
+  }
+}
+
+@media only screen and (max-width: 1180px) {
+  .result-question {
+    background-color: black;
+  }
+  .top-section {
+    margin-bottom: 130%;
+  }
+  .algo {
+    float: left;
+    margin-left: 20px;
+    width: 99%;
+  }
+  .algo-description-text {
+    width: 80%;
+  }
+  .avatar-section {
+    width: 97%;
+    padding-bottom: 500px;
+  }
+}

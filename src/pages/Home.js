@@ -4,6 +4,7 @@ import { db } from "../initFirebase";
 import { collection, getDoc, getDocs, doc } from 'firebase/firestore'
 import { userConverter } from "../objects/user";
 import Header from "./Header";
+import NavBar from "./NavBar/indexNB";
 
 
 

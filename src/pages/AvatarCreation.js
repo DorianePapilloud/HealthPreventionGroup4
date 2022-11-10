@@ -1,7 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import AvatarForm from "../components/AvatarForm";
 import {db} from "../initFirebase";
-import {doc, setDoc} from "firebase/firestore";
+import {arrayUnion, doc, setDoc, updateDoc} from "firebase/firestore";
 import {avatarInfo} from "../services/getCurrentAvatar";
 import avatarCreation from "../css/avatarCreation.module.scss"
 import UserContext from "../UserContext";
@@ -13,9 +13,9 @@ export default function AvatarCreation() {
     const user = userContext.currentUser;
 
     // set the data
-    const face = avatarInfo.getFace
-    const head = avatarInfo.getHead;
-    const body = avatarInfo.getBody;
+    const face = userContext.currentFace;
+    const head = userContext.currentHead;
+    const body = userContext.currentBody;
     console.log(user.uid);
     const handleAvatarCreation = async () => {
         let userUID = "Guest";
@@ -27,12 +27,14 @@ export default function AvatarCreation() {
 
         try {
             // create avatar in DB with the data set
-            await setDoc(doc(db, "avatars", userUID), {
+            await updateDoc(doc(db, "avatars", userUID), {
                 face: face,
                 body: body,
                 head: head,
             });
+
             navigate("/");
+
         } catch (e) {
             console.error(e);
         }

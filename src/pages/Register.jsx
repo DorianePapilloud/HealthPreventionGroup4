@@ -22,14 +22,15 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      let data = await createUserWithEmailAndPassword(auth, email, password);
-      let userUID = "Guest";
-      if(currentUser !== null){
-        userUID = currentUser.uid;
+      try{
+        await createUserWithEmailAndPassword(auth, email, password);
+        userContext.setCurrentUser(auth.currentUser);
+      }catch{
+
       }
 
       // TODO : pass the name, surname, role and answers as handleregister inputs
-      await setDoc(doc(db, "users", userUID), {
+      await setDoc(doc(db, "users", auth.currentUser.uid), {
         name: name,
         surname: surname,
         email: email,
@@ -39,7 +40,9 @@ export default function Register() {
         avatarID: "",
         questionnaire: [],
       });
+      console.log(auth.currentUser.uid);
       navigate("/avatar");
+      console.log(auth.currentUser.uid);
     } catch (e) {
       console.error(e);
       setError(true)

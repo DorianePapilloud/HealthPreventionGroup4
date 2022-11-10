@@ -4,41 +4,45 @@ import {BodyImageData} from "../images/avatar/body/body";
 import {FaceImageData} from "../images/avatar/faces/face";
 import avatarCreation from "../css/avatarCreation.module.scss"
 import {avatarInfo} from "../services/getCurrentAvatar";
+import UserContext from "../UserContext";
+import React from "react";
 
 export default function AvatarForm() {
+    const userContext = React.useContext(UserContext);
     const [currentHead, setCurrentHead] = useState(0);
     const [currentBody, setCurrentBody] = useState(0);
     const [currentFace, setCurrentFace] = useState(0);
+
 
     const Avatar = () => {
         const headLength = HeadImageData.length;
         function nextHead() {
             setCurrentHead( currentHead === headLength - 1 ? 0 : currentHead + 1 );
-            avatarInfo.setHead = currentHead;
+            userContext.setCurrentHead(currentHead);
         }
         function prevHead() {
             setCurrentHead( currentHead === 0 ? headLength - 1 : currentHead - 1 );
-            avatarInfo.setHead = currentHead;
+            userContext.setCurrentHead(currentHead);
         }
 
         const bodyLength = BodyImageData.length;
         function nextBody() {
             setCurrentBody( currentBody === bodyLength - 1 ? 0 : currentBody + 1 );
-            avatarInfo.setBody = currentBody;
+            userContext.setCurrentBody(currentBody);
         }
         function prevBody() {
             setCurrentBody( currentBody === 0 ? bodyLength - 1 : currentBody - 1 );
-            avatarInfo.setBody = currentBody;
+            userContext.setCurrentBody(currentBody);
         }
 
         const faceLength = FaceImageData.length;
         function nextFace() {
             setCurrentFace( currentFace === faceLength - 1 ? 0 : currentFace + 1 );
-            avatarInfo.setFace = currentFace;
+            userContext.setCurrentFace(currentFace);
         }
         function prevFace() {
             setCurrentFace( currentFace === 0 ? faceLength - 1 : currentFace - 1 );
-            avatarInfo.setFace = currentFace;
+            userContext.setCurrentFace(currentFace);
         }
         return (
             <>

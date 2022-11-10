@@ -7,6 +7,7 @@ import logo from "../images/loginRegister/LogoHealthCareApp.png"
 import welcomeImg from "../images/loginRegister/DoctorsBG1.gif"
 import "../css/Login.scss"
 import React, {useEffect} from 'react';
+import UserContext from "../UserContext";
 import {Popup, PopupContainer} from "survey-react-ui";
 
 
@@ -15,6 +16,7 @@ import {Popup, PopupContainer} from "survey-react-ui";
 export default function Login() {
   const navigate = useNavigate();
   const [hasError, setError] = React.useState(false);
+  const userContext = React.useContext(UserContext);
 
   const handleLogin = async (e, email, password) => {
     e.preventDefault();

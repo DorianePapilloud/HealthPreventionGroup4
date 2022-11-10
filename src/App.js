@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./initFirebase";
+import {auth, db} from "./initFirebase";
 import { useEffect, useState } from "react";
 import Logout from "./pages/Logout";
 import Questionnaire from "./Questionnaire";
@@ -21,12 +21,18 @@ import AdminPage from "./pages/AdminPage";
 import UserContext from "./UserContext";
 import Error404 from "./pages/Error404";
 import About from "./pages/About";
+import {doc, getDoc} from "firebase/firestore";
+import {userConverter} from "./objects/user";
 
 //test
 
 export default function App() {
   /* Current user state */
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentHead, setCurrentHead] = useState(0);
+  const [currentBody, setCurrentBody] = useState(0);
+  const [currentFace, setCurrentFace] = useState(0);
+  const [currentAdmin, setCurrentAdmin] = useState(false);
 
   /* Watch for authentication state changes */
   useEffect(() => {
@@ -34,12 +40,13 @@ export default function App() {
       console.log("User is", user);
       setCurrentUser(user);
     });
-
     // Unsubscribe from changes when App is unmounted
     return () => {
       unsubscribe();
     };
   }, []);
+
+
 
   if (currentUser === undefined) {
     return (
@@ -52,7 +59,7 @@ export default function App() {
   }
 
   return (
-    <UserContext.Provider value={{currentUser, setCurrentUser}}>
+    <UserContext.Provider value={{currentUser, setCurrentUser, currentHead, setCurrentHead, currentBody, setCurrentBody,currentFace, setCurrentFace, currentAdmin, setCurrentAdmin }}>
     <div className="App">
       <div>
         <NavBar/>

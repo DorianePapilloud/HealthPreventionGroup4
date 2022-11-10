@@ -2,23 +2,26 @@ import React, {useEffect, useState} from 'react';
 import {Nav, NavBarContainer, NavLinks, NavCenter, NavLeft, NavRight, User, LogoWeCare} from "./NavBar";
 import userImg from "../../images/loginRegister/user.jpg";
 import logoImg from "../../images/loginRegister/LogoHealthCareApp.png";
-import {userUIDInfo} from "../../services/getCurrentUserUid";
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../../initFirebase";
 import {userConverter} from "../../objects/user";
 import UserContext from "../../UserContext";
-
+import {useNavigate} from "react-router-dom";
 
 export default function NavBar() {
 
     const [users, setUsers] = useState([]) ;
     const userContext = React.useContext(UserContext);
     const currentUser = userContext.currentUser;
+    const [role, setRole] = useState("");
 
-    useEffect(() => {
+    useEffect( () => {
         let userUID = "Guest";
-        if(currentUser !== null){
+        if (currentUser !== null) {
             userUID = currentUser.uid;
+        }
+        else{
+            userContext.setCurrentAdmin(false);
         }
 
         const getObject = async () => {
@@ -28,14 +31,23 @@ export default function NavBar() {
             if (docSnap.exists()) {
                 // Convert to User object
                 const user = docSnap.data();
+                if(user.role === "Admin"){
+                    userContext.setCurrentAdmin(true);
+                }else{
+                    userContext.setCurrentAdmin(false);
+                }
             } else {
+
                 console.log("No user found!");
             }
         }
+
+        console.log(role);
+
         getObject().then(() => {
         });
-    }, []);
 
+    }, [currentUser]);
 
     return (
         <>
@@ -50,7 +62,15 @@ export default function NavBar() {
                         |
                         <NavLinks to='/about'>About</NavLinks>
                         |
-                        <NavLinks to='/register'>Register</NavLinks>
+                        {!userContext.currentAdmin ? (
+                                <NavLinks to="/register">
+                                   Register
+                                </NavLinks>
+                        ) : (
+                            <NavLinks to="/admin">
+                                Normal Values
+                            </NavLinks>
+                        )}
                     </NavCenter>
                     <NavRight>
                         <User src={userImg}></User>

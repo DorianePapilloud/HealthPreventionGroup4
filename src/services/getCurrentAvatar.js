@@ -1,5 +1,6 @@
 export const avatarInfo = {
-    head: 0,
+
+    head: null,
     face: 4,
     body: 0,
 

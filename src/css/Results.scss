@@ -1,12 +1,26 @@
 .avatar-section {
   margin: auto;
-  width: 40%;
+  width: 30%;
   text-align: center;
+  justify-content: center;
   padding-bottom: 300px;
   border-radius: 50px;
   background-color: #f3f3f3;
   border-style: solid;
   border-color: black;
+}
+
+#edit_button{
+  margin-left: 5%;
+  width: 25%;
+  background: #4dd6b6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  vertical-align: bottom;
 }
 
 .avatar {

@@ -18,6 +18,7 @@ import {avatarConverter} from "../objects/avatar";
 import {FaceImageData} from "../images/avatar/faces/face";
 import {HeadImageData} from "../images/avatar/heads/head";
 import {BodyImageData} from "../images/avatar/body/body";
+import {NavLinks} from "./NavBar/NavBar";
 export default class Results extends React.Component {
     static contextType = UserContext;
     constructor(props){
@@ -275,6 +276,8 @@ render()
                     <div className={"result-avatar-description"}>
                         {/*title under avatar goes here*/}
                     </div>
+                    <NavLinks to='/avatar'><button id="edit_button">Edit</button></NavLinks>
+
                 </div>
                 <div className={"algo"}>
                     <div className={"algo-section"}>

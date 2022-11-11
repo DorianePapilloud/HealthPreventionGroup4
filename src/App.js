@@ -4,7 +4,6 @@ import { Route, Routes, Link } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-
 import { onAuthStateChanged } from "firebase/auth";
 import {auth, db} from "./initFirebase";
 import React, { useEffect, useState } from "react";

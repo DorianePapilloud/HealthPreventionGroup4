@@ -33,6 +33,8 @@ export default class Results extends React.Component {
             head: 0,
             face: 0,
             body: 0,
+            nameUser: '',
+            surnameUser: '',
 
             // diabetes
             gender: 1,
@@ -87,6 +89,8 @@ export default class Results extends React.Component {
         let user = docSnap.data();
         // set the text to display
         const questID = await user.getQuestionnaire();
+        let userName = await user.getName();
+        let userSurname = await user.getSurname();
         let refQuest = doc(db, "questionnaire", questID[questID.length-1]).withConverter(questionnaireConverter);
         let docSnapQuest = await getDoc(refQuest);
         let questOBJ = docSnapQuest.data();
@@ -94,6 +98,8 @@ export default class Results extends React.Component {
         console.log(answers[1].name);
 
         this.setState({
+            nameUser: userName,
+            surnameUser: userSurname,
             gender: answers[0].value,
             age: answers[1].value,
             weight: answers[2].value,
@@ -192,8 +198,8 @@ export default class Results extends React.Component {
 
     increment() {
         this.setState(prevState => {
-            return {value: prevState.value < 70? prevState.value+1 : 70,
-                age: prevState.value < 70? prevState.value+1 : 70}
+            return {value: prevState.value < 150? prevState.value+1 : 150,
+                weight: prevState.value < 150? prevState.value+1 : 150}
         });
     }
 
@@ -203,8 +209,8 @@ export default class Results extends React.Component {
 
     decrement() {
         this.setState(prevState => {
-            return {value: prevState.value > 20? prevState.value-1 : 20,
-                age: prevState.value > 20? prevState.value-1 : 20}
+            return {value: prevState.value > 30? prevState.value-1 : 30,
+                weight: prevState.value > 30? prevState.value-1 : 30}
         });
     }
 
@@ -241,7 +247,7 @@ render()
                 <div className={"avatar-section"}>
                     <div className={"result-avatar"}>
                         {/*avatar goes here*/}
-                        Avatar
+                        {this.state.name} {this.state.surname}
                         <div className={"avatar"}>
                             {FaceImageData.map( (face,index) => {
                                 return (
@@ -286,9 +292,8 @@ render()
                                 <DiabetesAlgorithm ref={this.diabetAlgo}/>
                             </div>
                         </div>
-                        <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
+                        <div className={"algo-details-link"} >
+                            <a className={"link2"} href="https://en.wikipedia.org/wiki/Diabetes" target="_blank" >Details</a>
                         </div>
                     </div>
 
@@ -307,8 +312,7 @@ render()
                             </div>
                         </div>
                         <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
+                            <a className={"link2"} href="https://en.wikipedia.org/wiki/Cancer" target="_blank" >Details</a>
                         </div>
                     </div>
 
@@ -328,8 +332,7 @@ render()
                             </div>
                         </div>
                         <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
+                            <a className={"link2"} href="https://en.wikipedia.org/wiki/Infarction" target="_blank" >Details</a>
                         </div>
                     </div>
 
@@ -346,8 +349,7 @@ render()
                             </div>
                         </div>
                         <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
+                            <a className={"link2"} href="https://en.wikipedia.org/wiki/Infarction" target="_blank" >Details</a>
                         </div>
                     </div>
                 </div>

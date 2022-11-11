@@ -72,6 +72,14 @@
   margin-bottom: 20px;
 }
 
+.link2 {
+  text-decoration: none;
+  color: white;
+  &:hover {
+    color: cadetblue;
+  }
+}
+
 .algo-description-text {
   float: left;
   margin-top: 10px;

@@ -33,6 +33,8 @@ export default class Results extends React.Component {
             head: 0,
             face: 0,
             body: 0,
+            nameUser: '',
+            surnameUser: '',
 
             // diabetes
             gender: 1,
@@ -87,6 +89,8 @@ export default class Results extends React.Component {
         let user = docSnap.data();
         // set the text to display
         const questID = await user.getQuestionnaire();
+        let userName = await user.getName();
+        let userSurname = await user.getSurname();
         let refQuest = doc(db, "questionnaire", questID[questID.length-1]).withConverter(questionnaireConverter);
         let docSnapQuest = await getDoc(refQuest);
         let questOBJ = docSnapQuest.data();
@@ -94,6 +98,8 @@ export default class Results extends React.Component {
         console.log(answers[1].name);
 
         this.setState({
+            nameUser: userName,
+            surnameUser: userSurname,
             gender: answers[0].value,
             age: answers[1].value,
             weight: answers[2].value,
@@ -109,7 +115,7 @@ export default class Results extends React.Component {
             alim: answers[13].value,
             sport: answers[14].value,
             alcohol: answers[15].value,
-            value: answers[1].value,
+            value: answers[2].value,
         });
 
         // display or not the infarct
@@ -192,8 +198,8 @@ export default class Results extends React.Component {
 
     increment() {
         this.setState(prevState => {
-            return {value: prevState.value < 70? prevState.value+1 : 70,
-                age: prevState.value < 70? prevState.value+1 : 70}
+            return {value: prevState.value < 150? prevState.value+1 : 150,
+                weight: prevState.value < 150? prevState.value+1 : 150}
         });
     }
 
@@ -203,8 +209,8 @@ export default class Results extends React.Component {
 
     decrement() {
         this.setState(prevState => {
-            return {value: prevState.value > 20? prevState.value-1 : 20,
-                age: prevState.value > 20? prevState.value-1 : 20}
+            return {value: prevState.value > 30? prevState.value-1 : 30,
+                weight: prevState.value > 30? prevState.value-1 : 30}
         });
     }
 
@@ -241,7 +247,7 @@ render()
                 <div className={"avatar-section"}>
                     <div className={"result-avatar"}>
                         {/*avatar goes here*/}
-                        Avatar
+                        {this.state.name} {this.state.surname}
                         <div className={"avatar"}>
                             {FaceImageData.map( (face,index) => {
                                 return (
@@ -275,7 +281,7 @@ render()
                         {/*Diabetes*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
-                                <h2>Diabetes</h2>
+                                <h2 className="h2_results">Diabetes</h2>
                                 <p>Diabetes is a chronic (long-lasting) health condition that affects how your body turns food into energy.
                                     Your body breaks down most of the food you eat into sugar (glucose) and releases it into your bloodstream.
                                     When your blood sugar goes up, it signals your pancreas to release insulin. Insulin acts like a key to let
@@ -286,9 +292,8 @@ render()
                                 <DiabetesAlgorithm ref={this.diabetAlgo}/>
                             </div>
                         </div>
-                        <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
+                        <div className={"algo-details-link"} >
+                            <a className={"link2"} href="https://en.wikipedia.org/wiki/Diabetes" target="_blank" >Details</a>
                         </div>
                     </div>
 
@@ -296,7 +301,7 @@ render()
                         {/*Cancer*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
-                                <h2>Cancer</h2>
+                                <h2 className="h2_results">Cancer</h2>
                                 <p>Cancer is a condition where cells in a specific part of the body grow and reproduce uncontrollably. The cancerous cells
                                     can invade and destroy surrounding healthy tissue, including organs.
                                     Cancer sometimes begins in one part of the body before spreading to other areas. This process is known as metastasis.
@@ -307,8 +312,7 @@ render()
                             </div>
                         </div>
                         <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
+                            <a className={"link2"} href="https://en.wikipedia.org/wiki/Cancer" target="_blank" >Details</a>
                         </div>
                     </div>
 
@@ -317,7 +321,7 @@ render()
                         {/*Infarct*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
-                                <h2>Infarct</h2>
+                                <h2 className="h2_results">Infarct</h2>
                             <p>An infarct can occur when an area of necrosis occurs in a tissue or organ resulting from obstruction of the local circulation by a thrombus or embolus.
                                 This can eventually cause a heart attack to occur.
                                 You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco,
@@ -328,8 +332,7 @@ render()
                             </div>
                         </div>
                         <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
+                            <a className={"link2"} href="https://en.wikipedia.org/wiki/Infarction" target="_blank" >Details</a>
                         </div>
                     </div>
 
@@ -337,7 +340,7 @@ render()
                         {/*No Infarctus*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
-                                <h2>No Infarct</h2>
+                                <h2 className="h2_results">No Infarct</h2>
                             <p>You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco,
                                 limiting the amount of alcohol you drink, being physically active, keeping your stress level low.</p>
                             </div>
@@ -346,8 +349,7 @@ render()
                             </div>
                         </div>
                         <div className={"algo-details-link"}>
-                            Details
-                            {/*link to bottom page*/}
+                            <a className={"link2"} href="https://en.wikipedia.org/wiki/Infarction" target="_blank" >Details</a>
                         </div>
                     </div>
                 </div>

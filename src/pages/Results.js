@@ -275,7 +275,7 @@ render()
                         {/*Diabetes*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
-                                <h2>Diabetes</h2>
+                                <h2 className="h2_results">Diabetes</h2>
                                 <p>Diabetes is a chronic (long-lasting) health condition that affects how your body turns food into energy.
                                     Your body breaks down most of the food you eat into sugar (glucose) and releases it into your bloodstream.
                                     When your blood sugar goes up, it signals your pancreas to release insulin. Insulin acts like a key to let
@@ -296,7 +296,7 @@ render()
                         {/*Cancer*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
-                                <h2>Cancer</h2>
+                                <h2 className="h2_results">Cancer</h2>
                                 <p>Cancer is a condition where cells in a specific part of the body grow and reproduce uncontrollably. The cancerous cells
                                     can invade and destroy surrounding healthy tissue, including organs.
                                     Cancer sometimes begins in one part of the body before spreading to other areas. This process is known as metastasis.
@@ -317,7 +317,7 @@ render()
                         {/*Infarct*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
-                                <h2>Infarct</h2>
+                                <h2 className="h2_results">Infarct</h2>
                             <p>An infarct can occur when an area of necrosis occurs in a tissue or organ resulting from obstruction of the local circulation by a thrombus or embolus.
                                 This can eventually cause a heart attack to occur.
                                 You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco,
@@ -337,7 +337,7 @@ render()
                         {/*No Infarctus*/}
                         <div className={"algo-description"}>
                             <div className={"algo-description-text"}>
-                                <h2>No Infarct</h2>
+                                <h2 className="h2_results">No Infarct</h2>
                             <p>You can reduce your risk of getting a heart attack by keeping a healthy weight, avoiding tobacco,
                                 limiting the amount of alcohol you drink, being physically active, keeping your stress level low.</p>
                             </div>

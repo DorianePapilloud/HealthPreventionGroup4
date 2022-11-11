@@ -46,7 +46,7 @@ export default function AvatarCreation() {
             <br/>
             <AvatarForm/>
             <br/>
-            <button id={avatarCreation.create_btn} onClick={handleAvatarCreation}>Create</button>
+            <button id={avatarCreation.create_btn} onClick={handleAvatarCreation}>Save</button>
         </div>
     );
 }

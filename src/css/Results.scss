@@ -9,10 +9,6 @@
   border-color: black;
 }
 
-.text_choices{
-  font-size: 15px;
-}
-
 .avatar {
   width: 30%;
 }
@@ -38,16 +34,42 @@
   z-index: 3;
   margin: auto;
 }
+
+.text_choices{
+  font-size: 15px;
+}
+
+.algo {
+  display: inline-grid;
+  justify-content: center;
+  width: 95%;
+  margin: auto;
+}
+
+.algo-section, .algo-section-infarct, .algo-section-noInfarct{
+  color: black;
+  display: flex;
+}
+
+.algo-description{
+  background-color: #00bbb3;
+  float:left;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
 .algo-details-link {
+  font-family: "Corbel Light";
   border-radius: 10px;
   color: white;
-  background-color: #000000;
+  background-color: #26343D;
   margin-left: 1%;
   float: left;
-  padding-bottom: 115px;
   padding-left: 30px;
   cursor: pointer;
   padding-right: 30px;
+  margin-bottom: 20px;
 }
 
 .algo-description-text {
@@ -75,29 +97,13 @@
   margin: 20px;
 }
 
-.algo {
-  display: inline-block;
-  justify-content: center;
-  width: 100%;
-  margin: auto;
-  padding: 10px;
-}
-
-.algo-section, .algo-section-infarct, .algo-section-noInfarct{
-  color: black;
-}
-
-
-.algo-description{
-  background-color: #00bbb3;
-  float:left;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  width: 100%;
-}
-
 .h4_results{
-  font-size: 18px;
+  font-size: 20px;
+  font-family: "Corbel Light";
+}
+
+.h2_results{
+  font-family: "Arial";
 }
 
 .results-page {
@@ -109,6 +115,7 @@
   display: flex;
   text-align: center;
   width: 100%;
+  justify-content: center;
 }
 
 .result-question {
@@ -119,25 +126,35 @@
   border-radius: 10px;
 }
 
+.result-question {
+  box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
+}
+
+.input_change{
+  font-size: 15px;
+  height: 33px;
+  border-radius: 0px;
+  box-shadow: none;
+  text-align: center;
+}
+
+.radio_button{
+  box-shadow: none;
+  height: 10px;
+}
+
 @media only screen and (max-width: 1420px) {
-  .result-question {
-    box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
-  }
 
-  .input_change{
-    font-size: 15px;
-    height: 33px;
-    border-radius: 0px;
-    box-shadow: none;
-  }
-
-  .radio_button{
-    box-shadow: none;
-    height: 10px;
+  .algo {
+    display: inline-block;
+    justify-content: center;
+    width: 95%;
+    text-align:center
   }
 
   .algo-section, .algo-section-infarct, .algo-section-noInfarct {
     width: 95%;
+    display: inline-block;
   }
   .algo-description {
     width: 100%;

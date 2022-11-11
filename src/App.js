@@ -19,7 +19,6 @@ import About from "./pages/About";
 import {doc, getDoc} from "firebase/firestore";
 import {userConverter} from "./objects/user";
 
-
 export default function App() {
   /* Current user state */
   const [currentUser, setCurrentUser] = useState(undefined);

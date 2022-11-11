@@ -75,6 +75,7 @@ export const NavLeft = styled.div`
 export const User = styled.img`
   width: 12%;
   height: auto;
+  cursor: pointer;
 `
 
 export const LogoWeCare = styled.img`

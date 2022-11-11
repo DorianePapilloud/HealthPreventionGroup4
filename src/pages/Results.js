@@ -115,7 +115,7 @@ export default class Results extends React.Component {
             alim: answers[13].value,
             sport: answers[14].value,
             alcohol: answers[15].value,
-            value: answers[1].value,
+            value: answers[2].value,
         });
 
         // display or not the infarct
